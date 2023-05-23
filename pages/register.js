@@ -1,8 +1,11 @@
 import { regStyles } from "../styles";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useRouter } from "next/router";
 import axios from "axios";
+import { isAuth } from "../helpers/auth";
 
 const Register = () => {
+  const router = useRouter();
   const [state, setState] = useState({
     name: "",
     email: "",
@@ -12,6 +15,17 @@ const Register = () => {
     buttonText: "Register",
   });
 
+  useEffect(() => {
+    const isLoggedIn = checkIfUserIsLoggedIn();
+    if (!isLoggedIn) {
+      router.push("/");
+    }
+  }, []);
+
+  const checkIfUserIsLoggedIn = () => {
+    const token = localStorage.getItem("token");
+    return !!token;
+  };
   const { name, email, password, error, success, buttonText } = state;
 
   const handleChange = (origen) => (e) => {
@@ -102,7 +116,6 @@ const Register = () => {
       </form>
       <h2>{success && success}</h2>
       <h2>{error && error}</h2>
-      {JSON.stringify(state)}
     </div>
   );
 };
