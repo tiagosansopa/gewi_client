@@ -1,0 +1,110 @@
+import { regStyles } from "../styles";
+import { useState } from "react";
+import axios from "axios";
+
+const Register = () => {
+  const [state, setState] = useState({
+    name: "",
+    email: "",
+    password: "",
+    error: "",
+    success: "",
+    buttonText: "Register",
+  });
+
+  const { name, email, password, error, success, buttonText } = state;
+
+  const handleChange = (origen) => (e) => {
+    setState({
+      ...state,
+      [origen]: e.target.value,
+      error: "",
+      success: "",
+    });
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    console.table({ name, email, password });
+    setState({
+      ...state,
+      buttonText: "Registering",
+    });
+
+    try {
+      const response = await axios.post(
+        `${process.env.NEXT_PUBLIC_API_NAME}/register`,
+        {
+          name: name,
+          email: email,
+          password,
+        }
+      );
+      setState({
+        ...state,
+        name: "",
+        email: "",
+        password: "",
+        error: "",
+        success: "",
+        buttonText: "Submitted",
+        success: response.data.message,
+      });
+    } catch (error) {
+      setState({
+        ...state,
+        buttonText: "Register",
+        error: error.response.data.error,
+      });
+    }
+  };
+
+  return (
+    <div className={regStyles.container}>
+      <h1>Register</h1>
+
+      <form onSubmit={handleSubmit}>
+        <div>
+          <label className={regStyles.label} htmlFor="email">
+            Name:
+          </label>
+          <input
+            className={regStyles.input}
+            type="text"
+            id="name"
+            value={name}
+            onChange={handleChange("name")}
+          />
+          <label className={regStyles.label} htmlFor="email">
+            Email:
+          </label>
+          <input
+            className={regStyles.input}
+            type="email"
+            id="email"
+            value={email}
+            onChange={handleChange("email")}
+          />
+          <label className={regStyles.label} htmlFor="email">
+            Password:
+          </label>
+          <input
+            className={regStyles.input}
+            type="password"
+            id="password"
+            value={password}
+            onChange={handleChange("password")}
+          />
+          <button className={regStyles.button} type="submit">
+            {buttonText}
+          </button>
+        </div>
+      </form>
+      <h2>{success && success}</h2>
+      <h2>{error && error}</h2>
+      {JSON.stringify(state)}
+    </div>
+  );
+};
+
+export default Register;

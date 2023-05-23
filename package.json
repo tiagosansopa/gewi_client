@@ -1,0 +1,36 @@
+{
+  "name": "gewi",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@fortawesome/fontawesome-svg-core": "^6.4.0",
+    "@fortawesome/free-solid-svg-icons": "^6.4.0",
+    "@fortawesome/react-fontawesome": "^0.2.0",
+    "axios": "^1.4.0",
+    "date-fns": "^2.30.0",
+    "dotenv": "^16.0.3",
+    "js-cookie": "^3.0.5",
+    "jsonwebtoken": "^9.0.0",
+    "mongodb": "^5.4.0",
+    "next": "^13.4.1",
+    "next-offline": "^5.0.5",
+    "next-pwa": "^5.6.0",
+    "qrcode.react": "^3.1.0",
+    "react": "^18.2.0",
+    "react-apple-login": "^1.1.6",
+    "react-date-range": "^1.4.0",
+    "react-dom": "^18.2.0",
+    "react-google-login": "^5.2.2",
+    "workbox-webpack-plugin": "^6.5.4"
+  }
+}

@@ -1,0 +1,148 @@
+.container {
+  background-color: #ffffff26;
+  padding: 20px;
+  border-radius: 5px;
+  width: 90%;
+  margin: 0 auto;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-grow: 1;
+  flex-direction: column;
+}
+
+.title {
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+.buttonsContainer {
+  display: flex;
+  flex-direction: column;
+  width: 90%;
+  margin: 0 auto;
+}
+
+.button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 50px;
+  background-color: #e0e0e0;
+  border-radius: 4px;
+  text-decoration: none;
+  color: #333;
+  font-size: 18px;
+  margin-bottom: 10px;
+  cursor: pointer;
+}
+
+.plusIcon {
+  margin-left: 5px;
+}
+
+.listContainer {
+  margin-top: 40px;
+}
+
+.listTitle {
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+
+.list {
+  list-style-type: none;
+  padding: 0;
+}
+
+.listItem {
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid #ccc;
+  padding: 10px 0;
+}
+
+.thumbnail {
+  width: 50px;
+  height: 50px;
+  object-fit: cover;
+  border-radius: 4px;
+  margin-right: 10px;
+}
+
+.details {
+  flex: 1;
+}
+
+.place {
+  font-size: 16px;
+  margin-bottom: 5px;
+}
+
+.dateTime,
+.type {
+  font-size: 14px;
+  color: #666;
+  margin: 0;
+}
+.formContainer {
+  margin-top: 40px;
+}
+
+.formTitle {
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.formGroup {
+  margin-bottom: 20px;
+  text-align: left;
+  width: 90%;
+}
+
+.label {
+  font-size: 16px;
+  margin-bottom: 5px;
+}
+
+.input {
+  width: 100%;
+  height: 40px;
+  padding: 5px;
+  font-size: 14px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+}
+
+.submitButton {
+  width: 120px;
+  height: 40px;
+  background-color: #e0e0e0;
+  border-radius: 4px;
+  border: none;
+  color: #333;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.qrCodeContainer {
+  margin-top: 40px;
+  text-align: center;
+}
+
+.qrCodeTitle {
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+
+.qrCode {
+  width: 200px;
+  height: 200px;
+}

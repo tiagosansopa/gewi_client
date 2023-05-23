@@ -1,0 +1,20 @@
+@font-face {
+  font-family: "GlacialIndifference";
+  src: url("../font/GlacialIndifference-Regular.otf");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "GlacialIndifference";
+  src: url("../font/GlacialIndifference-Bold.otf");
+  font-weight: bold;
+  font-style: normal;
+}
+
+html,
+body {
+  font-family: "GlacialIndifference", sans-serif;
+  margin: 0;
+  padding: 0;
+}

@@ -1,0 +1,189 @@
+/* components/MessageList.module.css */
+.container {
+  background-image: url("/images/temp/bck.jpg");
+  background-size: cover;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.upperNavbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  background-color: #000000;
+}
+
+.logo {
+  height: 80px;
+  width: 100px;
+  background-image: url("/images/logos/gewi_txt.png");
+  background-size: cover;
+}
+
+.iconContainer {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  color: #f1f1f1;
+}
+
+.profileIcon {
+  font-size: 18px;
+  margin-right: 10px;
+}
+
+.notificationIcon {
+  font-size: 18px;
+  margin-right: 10px;
+}
+
+.content {
+  flex-grow: 1;
+  padding: 10px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.messagePreviewList {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  flex-grow: 1;
+}
+
+.messagePreview {
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  border-bottom: 1px solid #ccc;
+  cursor: pointer;
+}
+
+.messagePreview img {
+  width: 24px;
+  height: 24px;
+  margin-right: 10px;
+}
+
+.messageContent {
+  flex-grow: 1;
+}
+
+.bottomNavbar {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding: 10px;
+  background-color: #000000;
+}
+
+.icon {
+  font-size: 18px;
+}
+
+.selected {
+  background-color: #f1f1f1;
+}
+
+.messageDetail {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 20px;
+}
+
+.messageDetail h2 {
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+.messageDetail p {
+  font-size: 18px;
+  color: #555;
+}
+
+.backButton {
+  font-size: 18px;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+.backButton:hover {
+  text-decoration: underline;
+}
+
+.profile {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+}
+/* components/MessageList.module.css */
+
+/* ... previous styles ... */
+
+.profilePicture {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  margin: 15px;
+  object-position: center;
+  object-fit: cover;
+}
+
+.changePictureButton,
+.giveAccessButton {
+  font-size: 18px;
+  padding: 10px 20px;
+  margin-bottom: 10px;
+}
+
+.contactList {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+.contact {
+  padding: 10px;
+  border-bottom: 1px solid #ccc;
+  cursor: pointer;
+}
+
+.contact:last-child {
+  border-bottom: none;
+}
+
+.contact:hover {
+  background-color: #f1f1f1;
+}
+
+@media screen and (min-width: 768px) {
+  .content {
+    align-items: center;
+  }
+
+  .messagePreviewList {
+    max-width: 500px;
+    margin: 0 auto;
+  }
+
+  .selectedMessage {
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  .profile {
+    max-width: 400px;
+    margin: 0 auto;
+  }
+}
