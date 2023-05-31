@@ -2,10 +2,9 @@ import { useEffect, useState } from "react";
 import { accessStyles } from "../styles";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
-import { DateRangePicker } from "react-date-range";
+import DatePicker from "react-datepicker";
 import QRCode from "qrcode.react";
-import "react-date-range/dist/styles.css"; // Import the styles
-import "react-date-range/dist/theme/default.css"; // Import the theme
+import "react-datepicker/dist/react-datepicker.css";
 const vigentesData = [
   {
     thumbnail: "/images/temp/pm1.jpg",
@@ -75,17 +74,17 @@ const solicitadosData = [
 const viviendaOptions = ["House 1", "House 2", "House 3", "House 4"]; // Dummy values for house names
 
 const Access = () => {
+  const [startDate, setStartDate] = useState(new Date());
+  const [endDate, setEndDate] = useState(null);
+  const onChange = (dates) => {
+    const [start, end] = dates;
+    setStartDate(start);
+    setEndDate(end);
+  };
   const [showVigentes, setShowVigentes] = useState(false);
   const [showSolicitados, setShowSolicitados] = useState(false);
   const [showNuevo, setShowNuevo] = useState(false);
   const [qrCodeContent, setQRCodeContent] = useState("");
-  const [dateRange, setDateRange] = useState([
-    {
-      startDate: new Date(),
-      endDate: null,
-      key: "selection",
-    },
-  ]);
 
   const handleVigentesClick = () => {
     setShowVigentes(!showVigentes);
@@ -109,9 +108,8 @@ const Access = () => {
     const telefono = formData.get("telefono");
     const vivienda = formData.get("vivienda");
     const hora = formData.get("hora");
-    const dateRangeValue = formData.get("dateRange");
     // Generate the QR code content using the form data
-    const qrCodeContent = `${nombre}, ${telefono}, ${vivienda}, ${hora}, ${dateRangeValue}`;
+    const qrCodeContent = `${nombre}, ${telefono}, ${vivienda}, ${hora}`;
     setQRCodeContent(qrCodeContent);
   };
   return (
@@ -220,12 +218,13 @@ const Access = () => {
               <label htmlFor="fecha" className={accessStyles.label}>
                 Fecha
               </label>
-              <DateRangePicker
-                onChange={(item) => setDateRange([item.selection])}
-                showSelectionPreview={true}
-                moveRangeOnFirstSelection={false}
-                ranges={dateRange}
-                name="dateRange"
+              <DatePicker
+                selected={startDate}
+                onChange={onChange}
+                startDate={startDate}
+                endDate={endDate}
+                selectsRange
+                inline
               />
             </div>
             <div className={accessStyles.formGroup}>

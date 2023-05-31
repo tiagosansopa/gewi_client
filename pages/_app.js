@@ -1,6 +1,7 @@
 import Layout from "../components/Layout";
 import "../styles/globals.css";
 import { AuthProvider } from "../context/AuthContext";
+import dynamic from "next/dynamic";
 
 function MyApp({ Component, pageProps }) {
   return (
@@ -11,5 +12,4 @@ function MyApp({ Component, pageProps }) {
     </AuthProvider>
   );
 }
-
-export default MyApp;
+export default dynamic(() => Promise.resolve(MyApp), { ssr: false });

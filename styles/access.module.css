@@ -146,3 +146,7 @@
   width: 200px;
   height: 200px;
 }
+
+.datePickerSize {
+  width: 100%;
+}

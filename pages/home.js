@@ -107,10 +107,12 @@ const Home = () => {
             <div className={homeStyles.photos}>
               {DUMMY_AMENITIES.map((item) => {
                 return (
-                  <div key={item.id} className={homeStyles.photoscontainer}>
-                    <p>{item.name}</p>
-                    <img src={item.img} />
-                    <p>{item.description}</p>
+                  <div className={homeStyles.photoscontainerWrap}>
+                    <div key={item.id} className={homeStyles.photoscontainer}>
+                      <p>{item.name}</p>
+                      <img src={item.img} />
+                      <p>{item.description}</p>
+                    </div>
                   </div>
                 );
               })}
@@ -138,18 +140,25 @@ const Home = () => {
       )}
       {selectedMessage && (
         <div className={homeStyles.messageDetail}>
-          <FontAwesomeIcon
-            icon={faArrowLeft}
-            onClick={() => setSelectedMessage(null)}
-          />
-          <h2>{selectedMessage.title}</h2>
-          <h2>{selectedMessage.date}</h2>
-          <p>{selectedMessage.content}</p>
-          <img
-            className={homeStyles.imgLogo}
-            src={selectedMessage.img}
-            alt={selectedMessage.preview}
-          />
+          <div className={homeStyles.messageHeader}>
+            <FontAwesomeIcon
+              className={homeStyles.leftArrow}
+              icon={faArrowLeft}
+              onClick={() => setSelectedMessage(null)}
+            />
+          </div>
+          <div className={homeStyles.messageTitle}>
+            <h2>{selectedMessage.title}</h2>
+            <h2>{selectedMessage.date}</h2>
+          </div>
+          <div className={homeStyles.messageHeader}>
+            <p>{selectedMessage.content}</p>
+            <img
+              className={homeStyles.imgLogo}
+              src={selectedMessage.img}
+              alt={selectedMessage.preview}
+            />
+          </div>
         </div>
       )}
     </div>

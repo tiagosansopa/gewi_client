@@ -15,12 +15,12 @@ const Register = () => {
     buttonText: "Register",
   });
 
-  useEffect(() => {
-    const isLoggedIn = checkIfUserIsLoggedIn();
-    if (!isLoggedIn) {
-      router.push("/");
-    }
-  }, []);
+  // useEffect(() => {
+  //   const isLoggedIn = checkIfUserIsLoggedIn();
+  //   if (!isLoggedIn) {
+  //     router.push("/");
+  //   }
+  // }, []);
 
   const checkIfUserIsLoggedIn = () => {
     const token = localStorage.getItem("token");

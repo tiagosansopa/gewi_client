@@ -27,19 +27,29 @@
   overflow: scroll;
 }
 
+.photoscontainerWrap {
+  transition: all 0.3s ease-out;
+  border: 5px solid #ffffff00;
+}
+
+.photoscontainerWrap:hover {
+  border-color: #ffffff;
+  border-radius: 9px;
+}
+
+.photoscontainer {
+  padding: 5px 10px;
+  width: 200px;
+  display: flex;
+  flex-direction: column;
+}
+
 .photoscontainer > img {
   width: auto;
   height: 100px;
-  margin: 10px 10px;
-  border-radius: 5px;
   cursor: pointer;
-  transition: all 0.3s ease-out;
 }
 
-.photoscontainer > img:hover {
-  box-shadow: 4px 4px 4px rgb(255, 255, 255);
-  height: 105px;
-}
 .photoscontainer > p {
   font-size: small;
 }
@@ -154,6 +164,18 @@
   padding: 20px;
 }
 
+.messageHeader {
+  width: 100%;
+  text-align: left;
+}
+.leftArrow {
+  cursor: pointer;
+}
+
+.messageTitle {
+  display: flex;
+}
+
 .messageDetail h2 {
   font-size: 24px;
   margin-bottom: 10px;
@@ -221,6 +243,18 @@
 
 .contact:hover {
   background-color: #f1f1f1;
+}
+
+.customDatePickerWidth,
+.customDatePickerWidth > div.react-datepicker-wrapper,
+.customDatePickerWidth
+  > div
+  > div.react-datepicker__input-container
+  .customDatePickerWidth
+  > div
+  > div.react-datepicker__input-container
+  input {
+  width: 100%;
 }
 
 @media screen and (min-width: 768px) {
