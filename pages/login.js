@@ -20,10 +20,7 @@ const Login = () => {
   const { email, password, error, success, buttonText } = state;
 
   useEffect(() => {
-    const isLoggedIn = checkIfUserIsLoggedIn();
-    if (isLoggedIn) {
-      router.push("/");
-    }
+    if (isAuth()) router.push("/home");
   }, []);
 
   const handleChange = (origen) => (e) => {
@@ -55,7 +52,7 @@ const Login = () => {
       authenticate(response, () =>
         isAuth() && isAuth().role === "admin"
           ? router.push("/admin")
-          : router.push("/user")
+          : router.push("/home")
       );
       setState({
         ...state,
@@ -89,11 +86,6 @@ const Login = () => {
     } catch (error) {
       setError(error.message);
     }
-  };
-
-  const checkIfUserIsLoggedIn = () => {
-    const token = localStorage.getItem("token");
-    return !!token;
   };
 
   const setUserLoggedIn = (token) => {
@@ -166,7 +158,7 @@ const Login = () => {
           {buttonText}
         </button>
       </form>
-      <div className={loginStyles.buttonContainer}>
+      {/* <div className={loginStyles.buttonContainer}>
         <h3 className={loginStyles.label}>or</h3>
         <GoogleLogin
           clientId="86329728024-ib082hcocqake15h1vad5353i12sd1bu.apps.googleusercontent.com"
@@ -186,7 +178,7 @@ const Login = () => {
             </button>
           )}
         />
-      </div>
+      </div> */}
     </div>
   );
 };

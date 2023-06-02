@@ -72,7 +72,7 @@ const Layout = ({ children }) => {
             </div>
             <div
               className={layoutStyles.iconContainer}
-              onClick={() => handleIconClick("/register")}
+              onClick={() => handleIconClick("/pay")}
             >
               <FontAwesomeIcon
                 icon={faWallet}
@@ -90,7 +90,7 @@ const Layout = ({ children }) => {
             </div>
             <div
               className={layoutStyles.iconContainer}
-              onClick={() => handleIconClick("/profile")}
+              onClick={() => handleIconClick("/amenity")}
             >
               <FontAwesomeIcon
                 icon={faCouch}

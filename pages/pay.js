@@ -1,41 +1,16 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { payStyles } from "../styles";
-const paymentData = [
-  {
-    cargo: "Rent",
-    fechaLimite: "2023-05-31",
-    estado: "Pending",
-    cantidad: 1000.55,
-  },
-  {
-    cargo: "Utilities",
-    fechaLimite: "2023-05-15",
-    estado: "Paid",
-    cantidad: 500.75,
-  },
-  {
-    cargo: "Internet",
-    fechaLimite: "2023-05-20",
-    estado: "Pending",
-    cantidad: 250.35,
-  },
-];
-const months = [
-  "January",
-  "February",
-  "March",
-  "April",
-  "May",
-  "June",
-  "July",
-  "August",
-  "September",
-  "October",
-  "November",
-  "December",
-];
+import { useRouter } from "next/router";
+import { isAuth } from "../helpers/auth";
+import { months, paymentData } from "../dummy";
+
 const Pay = () => {
+  const router = useRouter();
   const [selectedMonth, setSelectedMonth] = useState("");
+
+  useEffect(() => {
+    if (!isAuth()) router.push("/login");
+  }, []);
 
   const handleMonthChange = (event) => {
     setSelectedMonth(event.target.value);
@@ -44,6 +19,7 @@ const Pay = () => {
   const calculateTotal = () => {
     return paymentData.reduce((total, payment) => total + payment.cantidad, 0);
   };
+
   return (
     <div className={payStyles.container}>
       <h1>Pagos</h1>

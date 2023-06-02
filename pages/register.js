@@ -15,18 +15,11 @@ const Register = () => {
     buttonText: "Register",
   });
 
-  // useEffect(() => {
-  //   const isLoggedIn = checkIfUserIsLoggedIn();
-  //   if (!isLoggedIn) {
-  //     router.push("/");
-  //   }
-  // }, []);
-
-  const checkIfUserIsLoggedIn = () => {
-    const token = localStorage.getItem("token");
-    return !!token;
-  };
   const { name, email, password, error, success, buttonText } = state;
+
+  useEffect(() => {
+    if (isAuth()) router.push("/home");
+  }, []);
 
   const handleChange = (origen) => (e) => {
     setState({

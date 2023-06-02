@@ -1,15 +1,15 @@
 import { useState, useEffect } from "react";
 import { profileStyles } from "../styles";
+import { useRouter } from "next/router";
+import { isAuth } from "../helpers/auth";
+import { contacts } from "../dummy";
 const profile = () => {
+  const router = useRouter();
+  useEffect(() => {
+    if (!isAuth()) router.push("/login");
+  }, []);
   const [showContactList, setShowContactList] = useState(false);
 
-  // Render contact list
-  // Replace this with your own implementation to fetch and render the user's contact list
-  const contacts = [
-    { id: 1, name: "John Doe" },
-    { id: 2, name: "Jane Smith" },
-    { id: 3, name: "Bob Johnson" },
-  ];
   const handleSelectMessage = (message) => {
     setSelectedMessage(message);
   };

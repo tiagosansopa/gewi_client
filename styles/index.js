@@ -7,6 +7,8 @@ import mainStyles from "./home.module.css";
 import accessStyles from "./access.module.css";
 import payStyles from "./pay.module.css";
 import regStyles from "./register.module.css";
+import amenityStyles from "./amenity.module.css";
+import chatStyles from "./chat.module.css";
 
 export {
   indexStyles,
@@ -18,4 +20,6 @@ export {
   accessStyles,
   payStyles,
   regStyles,
+  amenityStyles,
+  chatStyles,
 };

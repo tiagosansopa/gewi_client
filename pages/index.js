@@ -4,10 +4,7 @@ import { isAuth } from "../helpers/auth";
 const Index = () => {
   const router = useRouter();
   useEffect(() => {
-    if (!isAuth()) {
-      console.log("Not Auth");
-      router.push("/login");
-    }
+    if (!isAuth()) router.push("/login");
   }, []);
 
   return (

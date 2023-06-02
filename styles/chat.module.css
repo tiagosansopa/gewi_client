@@ -316,3 +316,11 @@
     margin: 0 auto;
   }
 }
+
+.textareaChat {
+  width: 100%;
+}
+
+.textareaChat > * {
+  margin: auto;
+}
