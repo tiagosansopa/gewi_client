@@ -16,7 +16,7 @@ import {
 import Link from "next/link";
 
 const Layout = ({ children }) => {
-  const { isAuthenticated } = useContext(AuthContext);
+  const { setAmenity, isAuthenticated } = useContext(AuthContext);
   const router = useRouter();
   useEffect(() => {
     const isLoggedIn = checkIfUserIsLoggedIn();
@@ -30,6 +30,7 @@ const Layout = ({ children }) => {
   };
   const handleIconClick = (route) => {
     if (isAuthenticated) {
+      setAmenity();
       router.push(route);
     } else {
       router.push("/login");
@@ -39,7 +40,10 @@ const Layout = ({ children }) => {
     <div className={layoutStyles.container}>
       <header className={layoutStyles.upperNavbar}>
         {isAuth() && (
-          <div className={layoutStyles.bell}>
+          <div
+            className={layoutStyles.bell}
+            onClick={() => router.push("/notifications")}
+          >
             <FontAwesomeIcon
               icon={faBell}
               className={layoutStyles.notificationIcon}

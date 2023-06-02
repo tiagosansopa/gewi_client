@@ -6,6 +6,7 @@ export const AuthProvider = ({ children }) => {
   const [isAuthenticated, setIsAuthenticated] = useState(true);
   const [amenity, setAmenity] = useState();
   const [chat, setChat] = useState();
+  const [qrDetail, setQrDetail] = useState();
 
   const handleAuth = () => {};
 
@@ -18,6 +19,8 @@ export const AuthProvider = ({ children }) => {
         setAmenity,
         chat,
         setChat,
+        setQrDetail,
+        qrDetail,
       }}
     >
       {children}

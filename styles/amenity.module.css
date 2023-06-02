@@ -12,6 +12,17 @@
   flex-direction: column;
 }
 
+.amenityContainer {
+  background-color: #ffffff26;
+  padding: 20px;
+  border-radius: 5px;
+  width: 90%;
+  margin: 0 auto;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+  display: flex;
+  flex-wrap: wrap;
+}
+
 .imgLogo {
   width: 70%;
   height: auto;
@@ -177,9 +188,9 @@
   padding: 20px;
 }
 
-.messageHeader {
+.header {
   width: 100%;
-  text-align: left;
+  text-align: center;
 }
 
 .messageHeader img {

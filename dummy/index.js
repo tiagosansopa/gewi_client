@@ -58,6 +58,45 @@ exports.DUMMY_AMENITIES = [
   },
 ];
 
+exports.DUMMY_CHAT = [
+  {
+    id: 1,
+    from: "user",
+    content: "Hola",
+    date: "7:04",
+  },
+  {
+    id: 2,
+    from: "user",
+    content: "Como estas?",
+    date: "7:04",
+  },
+  {
+    id: 3,
+    from: "me",
+    content: "Bien y vos?",
+    date: "7:04",
+  },
+  {
+    id: 4,
+    from: "user",
+    content: "Tranquilo",
+    date: "7:06",
+  },
+  {
+    id: 5,
+    from: "user",
+    content: "Que haces?",
+    date: "7:07",
+  },
+  {
+    id: 6,
+    from: "me",
+    content: "Estaba leyendo sobre el constante e inevitable cambio de la vida",
+    date: "9:00",
+  },
+];
+
 exports.DUMMY_MESSAGES = [
   {
     id: 1,
@@ -117,68 +156,221 @@ exports.contacts = [
 
 exports.vigentesData = [
   {
-    thumbnail: "/images/temp/pm1.jpg",
+    thumbnail: "/images/temp/qr1.png",
     place: "Place 1",
     dateTime: "2023-05-12 10:00 AM",
-    type: "Type 1",
+    type: "car",
   },
   {
-    thumbnail: "/images/temp/pm1.jpg",
+    thumbnail: "/images/temp/qr2.png",
     place: "Place 2",
     dateTime: "2023-05-13 2:30 PM",
-    type: "Type 2",
+    type: "personal",
   },
   {
-    thumbnail: "/images/temp/pm1.jpg",
+    thumbnail: "/images/temp/qr3.png",
     place: "Place 3",
     dateTime: "2023-05-14 4:00 PM",
-    type: "Type 3",
+    type: "heli",
   },
   {
-    thumbnail: "/images/temp/pm1.jpg",
+    thumbnail: "/images/temp/qr1.png",
     place: "Place 4",
     dateTime: "2023-05-15 9:00 AM",
-    type: "Type 4",
+    type: "car",
   },
   {
-    thumbnail: "/images/temp/pm1.jpg",
+    thumbnail: "/images/temp/qr3.png",
     place: "Place 5",
     dateTime: "2023-05-16 1:30 PM",
-    type: "Type 5",
+    type: "car",
+  },
+  {
+    thumbnail: "/images/temp/qr2.png",
+    place: "Place 2",
+    dateTime: "2023-05-13 2:30 PM",
+    type: "personal",
+  },
+  {
+    thumbnail: "/images/temp/qr3.png",
+    place: "Place 3",
+    dateTime: "2023-05-14 4:00 PM",
+    type: "heli",
+  },
+  {
+    thumbnail: "/images/temp/qr3.png",
+    place: "Place 3",
+    dateTime: "2023-05-14 4:00 PM",
+    type: "heli",
+  },
+  {
+    thumbnail: "/images/temp/qr1.png",
+    place: "Place 4",
+    dateTime: "2023-05-15 9:00 AM",
+    type: "car",
+  },
+  {
+    thumbnail: "/images/temp/qr3.png",
+    place: "Place 4",
+    dateTime: "2023-05-15 9:00 AM",
+    type: "personal",
+  },
+  {
+    thumbnail: "/images/temp/qr3.png",
+    place: "Place 5",
+    dateTime: "2023-05-16 1:30 PM",
+    type: "car",
+  },
+  {
+    thumbnail: "/images/temp/qr1.png",
+    place: "Place 2",
+    dateTime: "2023-05-13 2:30 PM",
+    type: "personal",
   },
 ];
 
 exports.solicitadosData = [
   {
     thumbnail: "/images/temp/pm1.jpg",
+    user: "Luis Sierra",
     place: "Place 6",
     dateTime: "2023-05-17 3:30 PM",
-    type: "Type 6",
+    type: "car",
   },
   {
     thumbnail: "/images/temp/pm1.jpg",
+    user: "uim",
     place: "Place 7",
     dateTime: "2023-05-18 11:00 AM",
-    type: "Type 7",
+    type: "car",
   },
   {
     thumbnail: "/images/temp/pm1.jpg",
+    user: "Luis Sierra",
     place: "Place 8",
     dateTime: "2023-05-19 5:45 PM",
-    type: "Type 8",
+    type: "car",
   },
   {
     thumbnail: "/images/temp/pm1.jpg",
+    user: "uim",
     place: "Place 9",
     dateTime: "2023-05-20 9:30 AM",
-    type: "Type 9",
+    type: "personal",
   },
   {
     thumbnail: "/images/temp/pm1.jpg",
+    user: "uim",
     place: "Place 10",
     dateTime: "2023-05-21 12:15 PM",
-    type: "Type 10",
+    type: "heli",
+  },
+  {
+    thumbnail: "/images/temp/pm1.jpg",
+    user: "uim",
+    place: "Place 9",
+    dateTime: "2023-05-20 9:30 AM",
+    type: "personal",
+  },
+  {
+    thumbnail: "/images/temp/pm1.jpg",
+    user: "uim",
+    place: "Place 10",
+    dateTime: "2023-05-21 12:15 PM",
+    type: "personal",
+  },
+  {
+    thumbnail: "/images/temp/pm1.jpg",
+    user: "uim",
+    place: "Place 9",
+    dateTime: "2023-05-20 9:30 AM",
+    type: "personal",
+  },
+  {
+    thumbnail: "/images/temp/pm1.jpg",
+    user: "uim",
+    place: "Place 10",
+    dateTime: "2023-05-21 12:15 PM",
+    type: "personal",
+  },
+  {
+    thumbnail: "/images/temp/pm1.jpg",
+    user: "uim",
+    place: "Place 10",
+    dateTime: "2023-05-21 12:15 PM",
+    type: "heli",
+  },
+  {
+    thumbnail: "/images/temp/pm1.jpg",
+    user: "uim",
+    place: "Place 10",
+    dateTime: "2023-05-21 12:15 PM",
+    type: "heli",
+  },
+  {
+    thumbnail: "/images/temp/pm1.jpg",
+    user: "uim",
+    place: "Place 10",
+    dateTime: "2023-05-21 12:15 PM",
+    type: "heli",
+  },
+  {
+    thumbnail: "/images/temp/pm1.jpg",
+    user: "uim",
+    place: "Place 10",
+    dateTime: "2023-05-21 12:15 PM",
+    type: "heli",
+  },
+  {
+    thumbnail: "/images/temp/pm1.jpg",
+    user: "uim",
+    place: "Place 10",
+    dateTime: "2023-05-21 12:15 PM",
+    type: "heli",
+  },
+  {
+    thumbnail: "/images/temp/pm1.jpg",
+    user: "uim",
+    place: "Place 10",
+    dateTime: "2023-05-21 12:15 PM",
+    type: "heli",
+  },
+  {
+    thumbnail: "/images/temp/pm1.jpg",
+    user: "uim",
+    place: "Place 10",
+    dateTime: "2023-05-21 12:15 PM",
+    type: "heli",
   },
 ];
 
 exports.viviendaOptions = ["House 1", "House 2", "House 3", "House 4"];
+
+exports.type = ["Carro", "Personal", "Heli"];
+
+exports.DUMMY_PROFILE = {
+  name: "Luis Sierra",
+  email: "luissierra@gewi.com",
+  notifications: [
+    {
+      id: 1,
+      title: "Ha creado un nuevo acceso",
+      hour: "12:30pm",
+    },
+    {
+      id: 2,
+      title: "Le han dado acceso a una nueva casa",
+      hour: "12:30pm",
+    },
+    {
+      id: 3,
+      title: "Ha creado una reserva para la piscina",
+      hour: "12:30pm",
+    },
+    {
+      id: 4,
+      title: "Recuerde que tiene un pago pendiente",
+      hour: "12:30pm",
+    },
+  ],
+};

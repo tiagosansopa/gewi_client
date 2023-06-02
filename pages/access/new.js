@@ -2,7 +2,8 @@ import { useEffect, useState } from "react";
 import DatePicker from "react-datepicker";
 import QRCode from "qrcode.react";
 import "react-datepicker/dist/react-datepicker.css";
-import { viviendaOptions, months } from "../../dummy";
+
+import { viviendaOptions, months, type } from "../../dummy";
 import { useRouter } from "next/router";
 import { accessStyles } from "../../styles";
 const NewAccess = () => {
@@ -62,6 +63,16 @@ const NewAccess = () => {
             {viviendaOptions.map((option) => (
               <option value={option} key={option}>
                 {option}
+              </option>
+            ))}
+          </select>
+          <label htmlFor="vivienda" className={accessStyles.label}>
+            Tipo
+          </label>
+          <select id="tipo" name="tipo" className={accessStyles.input}>
+            {type.map((type) => (
+              <option value={type} key={type}>
+                {type}
               </option>
             ))}
           </select>
