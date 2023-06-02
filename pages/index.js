@@ -4,7 +4,7 @@ import { isAuth } from "../helpers/auth";
 const Index = () => {
   const router = useRouter();
   useEffect(() => {
-    if (!isAuth()) router.push("/login");
+    !isAuth() ? router.push("/login") : router.push("/home");
   }, []);
 
   return (

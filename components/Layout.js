@@ -76,7 +76,7 @@ const Layout = ({ children }) => {
             </div>
             <div
               className={layoutStyles.iconContainer}
-              onClick={() => handleIconClick("/pay")}
+              onClick={() => handleIconClick("/statement")}
             >
               <FontAwesomeIcon
                 icon={faWallet}
