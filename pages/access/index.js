@@ -2,6 +2,7 @@ import { useEffect, useState, useContext } from "react";
 import { accessStyles } from "../../styles";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import AuthContext from "../../context/AuthContext";
+import axios from "axios";
 import {
   faPlus,
   faCar,
@@ -14,11 +15,25 @@ import { vigentesData, solicitadosData } from "../../dummy";
 
 const Access = () => {
   const router = useRouter();
-  const [showSolicitados, setShowSolicitados] = useState(false);
+  const [vigentes, setVigentes] = useState([]);
   const { setQrDetail } = useContext(AuthContext);
+
+  const getVigentes = async () => {
+    try {
+      const response = await axios.get(
+        `${process.env.NEXT_PUBLIC_API_NAME}/access`
+      );
+      setVigentes(response.data.accesses);
+      console.log(response.data.message);
+    } catch (error) {
+      console.log(error.response.data.error);
+    }
+  };
 
   useEffect(() => {
     if (!isAuth()) router.push("/login");
+
+    getVigentes();
   }, []);
 
   const handleDetail = (item) => {
@@ -35,13 +50,14 @@ const Access = () => {
       <h2 className={accessStyles.title}>Mis Accessos</h2>
       <div className={accessStyles.amenities}>
         <div className={accessStyles.photos}>
-          {vigentesData.map((item) => {
+          {vigentes.map((item) => {
             return (
               <div
                 className={accessStyles.photoscontainerWrap}
                 onClick={() => {
                   handleDetail(item);
                 }}
+                key={item.id}
               >
                 <div
                   key={item.id}
