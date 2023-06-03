@@ -1,13 +1,15 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import { useRouter } from "next/router";
 import { GoogleLogin } from "react-google-login";
 import AppleLogin from "react-apple-login";
 import axios from "axios";
 import Link from "next/link";
 import { loginStyles } from "../styles";
+import AuthContext from "../context/AuthContext";
 import { authenticate, isAuth } from "../helpers/auth";
 
 const Login = () => {
+  const { setUser } = useContext(AuthContext);
   const router = useRouter();
   const [state, setState] = useState({
     email: "",
@@ -49,11 +51,12 @@ const Login = () => {
         }
       );
 
-      authenticate(response, () =>
+      authenticate(response, () => {
+        setUser(response.data.user);
         isAuth() && isAuth().role === "admin"
           ? router.push("/admin")
-          : router.push("/home")
-      );
+          : router.push("/home");
+      });
       setState({
         ...state,
         name: "",
@@ -70,21 +73,6 @@ const Login = () => {
         buttonText: "LogIn",
         error: error.response.data.error,
       });
-    }
-  };
-
-  const handleLogin = async (e) => {
-    e.preventDefault();
-    try {
-      // Perform login logic with email and password
-      // Replace with your own authentication code
-      const response = await axios.post("/api/login", { email, password });
-      // Set user as logged in
-      setUserLoggedIn(response.data.token);
-      // Redirect to the dashboard or perform any other necessary actions
-      router.push("/dashboard");
-    } catch (error) {
-      setError(error.message);
     }
   };
 
