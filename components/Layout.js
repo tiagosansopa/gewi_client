@@ -51,12 +51,16 @@ const Layout = ({ children }) => {
         )}
         <div className={layoutStyles.logo}></div>
         {isAuth() && (
-          <div onClick={() => handleIconClick("/profile")}>
+          <div
+            className={layoutStyles.profile}
+            onClick={() => handleIconClick("/profile")}
+          >
             <img
               className={layoutStyles.profilePicture}
               src={user.img}
               alt="Profile Picture"
             />
+            <small className={layoutStyles.profileName}>{user.name}</small>
           </div>
         )}
       </header>

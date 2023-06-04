@@ -12,7 +12,7 @@ import { DUMMY_MESSAGES, DUMMY_AMENITIES } from "../dummy";
 
 const Home = () => {
   const router = useRouter();
-  const { setChat, setAmenity } = useContext(AuthContext);
+  const { setChat, setAmenity, user } = useContext(AuthContext);
   const [messages, setMessages] = useState([]);
 
   const getChats = async (user) => {
@@ -37,7 +37,7 @@ const Home = () => {
   }, []);
 
   const handleSelectMessage = (message) => {
-    setChat(message);
+    setChat(message.sender);
     router.push("/chat");
   };
 
