@@ -13,49 +13,80 @@ const Amenity = () => {
   const router = useRouter();
   const { setAmenity, amenity } = useContext(AuthContext);
   const [reservas, setReservas] = useState([]);
-  const [selectedDate, setSelectedDate] = useState(new Date());
-  const [endDate, setEndDate] = useState(null);
+  const [selectedDate, setSelectedDate] = useState();
+  //const [endDate, setEndDate] = useState(null);
+  const [time, setTime] = useState({ hour: "", minutes: "" });
+  const [eventName, setEventName] = useState("");
+
+  const handleTimeChange = (event) => {
+    const { value } = event.target;
+    const [hour, minutes] = value.split(":"); // Extract the hour and minutes from the input value
+    setTime({ hour, minutes });
+  };
+
   const handleAmenity = (amenity) => {
     setAmenity(amenity);
   };
 
+  const handleEventName = (e) => setEventName(e.target.value);
+
   const OnChangeDate = (e) => {
-    const [start, end] = e;
-    console.log(start);
-    console.log(end);
-    setSelectedDate(start);
-    setEndDate(end);
-    getDayBookings();
+    //const [start, end] = e;
+    setSelectedDate(e);
+    // setEndDate(end);
+
+    getDayBookings(e);
   };
 
-  const OnChangeHour = (e) => {
-    console.table("uim", e.target.value);
-  };
-  const getTimezoneString = (offset) => {
-    const sign = offset < 0 ? "+" : "-";
-    const hours = Math.floor(Math.abs(offset) / 60);
-    const minutes = Math.abs(offset) % 60;
-    return `GMT${sign}${hours.toString().padStart(2, "0")}:${minutes
+  const getTimezoneString = (dateString) => {
+    const localTimezoneOffset = new Date().getTimezoneOffset(); // Get local time zone offset in minutes
+
+    const offsetHours = Math.abs(Math.floor(localTimezoneOffset / 60)); // Calculate offset hours
+    const offsetMinutes = Math.abs(localTimezoneOffset % 60); // Calculate offset minutes
+
+    const offsetSign = localTimezoneOffset >= 0 ? "-" : "+"; // Determine the offset sign
+
+    const offsetString = `${offsetSign}${offsetHours
       .toString()
-      .padStart(2, "0")}`;
+      .padStart(2, "0")}:${offsetMinutes.toString().padStart(2, "0")}`; // Format the offset string
+
+    const dateStringWithOffset = dateString + offsetString; // Concatenate the offset to the date string
+
+    const date = new Date(dateStringWithOffset);
+
+    return date;
   };
 
-  const getDayBookings = async () => {
-    console.table(
-      "selectedDate",
-      getTimezoneString(new Date(selectedDate).getTimezoneOffset()),
-      "UIMsss",
-      selectedDate.toISOString()
-    );
+  const getDayBookings = async (e) => {
     try {
-      const response = await axios.get(
+      const response = await axios.post(
         `${process.env.NEXT_PUBLIC_API_NAME}/bookings`,
         {
-          date: selectedDate,
+          selectedDate: new Date(e).toDateString(),
         }
       );
+      console.log(response.data.bookings);
+      setReservas(response.data.bookings);
+    } catch (error) {
+      console.log("Error getting day bookings");
+    }
+  };
 
-      setReservas((reservas) => reservas.concat(response.data.bookings));
+  const bookAmenity = async (e) => {
+    const dateFormat = new Date(selectedDate).toISOString().split("T")[0];
+    const timeFormat = `${time.hour}:${time.minutes}`;
+    const format = dateFormat + "T" + timeFormat + ":00.000";
+    const finalDate = getTimezoneString(format);
+    try {
+      const response = await axios.post(
+        `${process.env.NEXT_PUBLIC_API_NAME}/book`,
+        {
+          eventName: eventName,
+          start: finalDate,
+          finish: finalDate,
+          amenity: amenity.id,
+        }
+      );
     } catch (error) {
       console.log("Error getting day bookings");
     }
@@ -114,39 +145,36 @@ const Amenity = () => {
             <DatePicker
               selected={selectedDate}
               onChange={OnChangeDate}
-              startDate={selectedDate}
-              endDate={endDate}
-              selectsRange
+              // startDate={selectedDate}
+              // endDate={endDate}
+              // selectsRange
               inline
             />
             <div className={amenityStyles.flexColumn}>
               <label htmlFor="hora">Hora</label>
               <input
                 type="time"
-                onChange={OnChangeHour}
+                value={`${time.hour}:${time.minutes}`}
+                onChange={handleTimeChange}
                 id="hora"
                 name="hora"
               />
-              <button>Agendar</button>
+              <label htmlFor="nombre">Nombre de evento</label>
+              <input
+                id="nombre"
+                name="nombre"
+                onChange={handleEventName}
+                value={eventName}
+              ></input>
+              <button onClick={bookAmenity}>Agendar</button>
             </div>
             <div className={amenityStyles.flexColumn}>
               <h5>Espacios ocupados:</h5>
               {reservas.map((booking) => (
                 <div key={booking.index} className={amenityStyles.booking}>
                   <span>Nombre: {booking.eventName}</span>
-                  <span>
-                    Inicio: {booking.start}
-                    {console.table(
-                      "hola",
-                      new Date(booking.start).toISOString().split("T")[0],
-                      new Date(booking.start).toLocaleString("default", {
-                        month: "long",
-                      })
-                    )}
-                  </span>
-                  <span>
-                    Fin: {new Date(booking.start).toISOString().split("T")[0]}
-                  </span>
+                  <span>Inicio: {booking.start}</span>
+                  <span>Fin: {booking.finish}</span>
                   <span>Amenidad: {booking.amenity}</span>
                 </div>
               ))}
