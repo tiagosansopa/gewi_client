@@ -96,18 +96,6 @@
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.6);
 }
 
-.background {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-image: url("/images/temp/bck.jpg");
-  background-repeat: repeat;
-  animation: movingBikes 30s linear infinite;
-  z-index: -1;
-}
-
 @keyframes movingBikes {
   0% {
     background-position: 0 0;

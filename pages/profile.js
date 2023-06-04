@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import AuthContext from "../context/AuthContext";
 import { profileStyles } from "../styles";
 import { useRouter } from "next/router";
@@ -8,10 +8,15 @@ import { faCamera } from "@fortawesome/free-solid-svg-icons";
 import { contacts, DUMMY_PROFILE } from "../dummy";
 const profile = () => {
   const router = useRouter();
+  const { user, setUser } = useContext(AuthContext);
   const [showContactList, setShowContactList] = useState(false);
 
   useEffect(() => {
-    if (!isAuth()) router.push("/login");
+    const userI = isAuth();
+    if (!userI) {
+      router.push("/login");
+    }
+    setUser(userI);
   }, []);
 
   const handleChangeProfilePicture = () => {
@@ -31,7 +36,7 @@ const profile = () => {
         <div>
           <img
             className={profileStyles.profilePicture}
-            src="/images/temp/pm1.jpg"
+            src={user.img}
             alt="Profile Picture"
           />
           <button

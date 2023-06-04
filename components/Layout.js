@@ -16,18 +16,17 @@ import {
 import Link from "next/link";
 
 const Layout = ({ children }) => {
-  const { setAmenity, isAuthenticated } = useContext(AuthContext);
+  const { setAmenity, isAuthenticated, setUser, user } =
+    useContext(AuthContext);
   const router = useRouter();
   useEffect(() => {
-    const isLoggedIn = checkIfUserIsLoggedIn();
-    if (isLoggedIn) {
-      router.push("/");
+    const userI = isAuth();
+    if (!userI) {
+      router.push("/login");
     }
+    setUser(userI);
   }, []);
-  const checkIfUserIsLoggedIn = () => {
-    const token = localStorage.getItem("token");
-    return !!token;
-  };
+
   const handleIconClick = (route) => {
     if (isAuthenticated) {
       setAmenity();
@@ -55,7 +54,7 @@ const Layout = ({ children }) => {
           <div onClick={() => handleIconClick("/profile")}>
             <img
               className={layoutStyles.profilePicture}
-              src="/images/temp/pm1.jpg"
+              src={user.img}
               alt="Profile Picture"
             />
           </div>

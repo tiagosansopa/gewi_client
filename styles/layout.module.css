@@ -1,7 +1,7 @@
 /* components/MessageList.module.css */
 
 .container {
-  background-image: url("/images/temp/bck.jpg");
+  background-image: url("/images/background/bck.jpg");
   background-size: cover;
   display: flex;
   flex-direction: column;
