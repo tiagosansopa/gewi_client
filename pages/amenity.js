@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useContext, useState, useEffect } from "react";
 import AuthContext from "../context/AuthContext";
 import { amenityStyles } from "../styles";
 import { useRouter } from "next/router";
@@ -6,8 +6,12 @@ import axios from "axios";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
-import { DUMMY_AMENITIES } from "../dummy";
+import {
+  faArrowLeft,
+  faSpaghettiMonsterFlying,
+  faBirthdayCake,
+  faPersonBreastfeeding,
+} from "@fortawesome/free-solid-svg-icons";
 
 const Amenity = () => {
   const router = useRouter();
@@ -17,6 +21,22 @@ const Amenity = () => {
   //const [endDate, setEndDate] = useState(null);
   const [time, setTime] = useState({ hour: "", minutes: "" });
   const [eventName, setEventName] = useState("");
+  const [amenityList, setSetAmenityList] = useState([]);
+
+  const getAmenities = async () => {
+    try {
+      const response = await axios.get(
+        `${process.env.NEXT_PUBLIC_API_NAME}/amenities`
+      );
+      setSetAmenityList(response.data.amenities);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    getAmenities();
+  }, []);
 
   const handleTimeChange = (event) => {
     const { value } = event.target;
@@ -87,6 +107,8 @@ const Amenity = () => {
           amenity: amenity.id,
         }
       );
+      getDayBookings();
+      window.alert(response.data.message);
     } catch (error) {
       console.log("Error getting day bookings");
     }
@@ -107,7 +129,7 @@ const Amenity = () => {
       </div>
       {amenity === undefined && (
         <div className={amenityStyles.amenityContainer}>
-          {DUMMY_AMENITIES.map((item) => {
+          {amenityList.map((item) => {
             return (
               <div
                 className={amenityStyles.photoscontainerWrap}
@@ -116,9 +138,20 @@ const Amenity = () => {
                 }}
               >
                 <div key={item.id} className={amenityStyles.photoscontainer}>
-                  <p>{item.name}</p>
-                  <img src={item.img} />
+                  <h3>{item.name}</h3>
+                  <img src={item.img} className={amenityStyles.imgShadow} />
                   <p>{item.description}</p>
+                  <p>Capacidad max: {item.capacity} personas</p>
+
+                  <p>
+                    Open from: {item.schedule.open} to: {item.schedule.close}
+                  </p>
+                  <p>
+                    On:
+                    {item.weekdays.map((day) => {
+                      return <span> {day}, </span>;
+                    })}
+                  </p>
                 </div>
               </div>
             );
@@ -126,18 +159,40 @@ const Amenity = () => {
         </div>
       )}
       {amenity !== undefined && (
-        <div className={amenityStyles.container}>
+        <div className={amenityStyles.containerNoColor}>
           <div className={amenityStyles.amenityContainer}>
             <div key={amenity.id} className={amenityStyles.photoscontainer}>
               <p>{amenity.name}</p>
               <img src={amenity.img} />
               <p>{amenity.description}</p>
+              <p>Capacidad max: {amenity.capacity} personas</p>
             </div>
             <div>
               <h5>Servicios Disponibles</h5>
-              <p>dfsiojofdsajifpdsjaofidja</p>
-              <h5>Informacion adicional y reglamento</h5>
-              <p>fdsfdsafdafda</p>
+
+              <ul>
+                {amenity.services.map((service) => {
+                  return (
+                    <li key={service}>
+                      <p>{service}</p>
+                    </li>
+                  );
+                })}
+              </ul>
+              <span>
+                <p>
+                  Open from: {amenity.schedule.open} to:{" "}
+                  {amenity.schedule.close}
+                </p>
+              </span>
+              <span>
+                <p>
+                  On:
+                  {amenity.weekdays.map((day) => {
+                    return <span> {day}, </span>;
+                  })}
+                </p>
+              </span>
             </div>
           </div>
           <h1>Agendar</h1>
@@ -168,16 +223,26 @@ const Amenity = () => {
               ></input>
               <button onClick={bookAmenity}>Agendar</button>
             </div>
-            <div className={amenityStyles.flexColumn}>
+            <div className={amenityStyles.flexColumnBookings}>
               <h5>Espacios ocupados:</h5>
-              {reservas.map((booking) => (
-                <div key={booking.index} className={amenityStyles.booking}>
-                  <span>Nombre: {booking.eventName}</span>
-                  <span>Inicio: {booking.start}</span>
-                  <span>Fin: {booking.finish}</span>
-                  <span>Amenidad: {booking.amenity}</span>
-                </div>
-              ))}
+              <div>
+                {reservas.map((booking) => (
+                  <div key={booking.index} className={amenityStyles.booking}>
+                    <p>
+                      {Math.floor(Math.random() * 9) % 2 === 0 ? (
+                        <FontAwesomeIcon icon={faSpaghettiMonsterFlying} />
+                      ) : (
+                        <FontAwesomeIcon icon={faBirthdayCake} />
+                      )}{" "}
+                      {booking.eventName}{" "}
+                    </p>
+                    <p>
+                      from {new Date(booking.start).toLocaleTimeString()}
+                      to {new Date(booking.finish).toLocaleTimeString()}
+                    </p>
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
         </div>

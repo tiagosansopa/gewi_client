@@ -1,5 +1,7 @@
 import { useEffect, useState, useContext } from "react";
 import AuthContext from "../context/AuthContext";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faSpaghettiMonsterFlying } from "@fortawesome/free-solid-svg-icons";
 import { homeStyles } from "../styles";
 import { useRouter } from "next/router";
 import { isAuth } from "../helpers/auth";
@@ -39,7 +41,9 @@ const Home = () => {
                 <div key={item.id} className={homeStyles.photoscontainer}>
                   <p>{item.name}</p>
                   <img src={item.img} />
-                  <p>{item.description}</p>
+                  <p>
+                    Open from: {item.schedule.open} to: {item.schedule.close}
+                  </p>
                 </div>
               </div>
             );

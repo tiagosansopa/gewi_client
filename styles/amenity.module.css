@@ -12,6 +12,19 @@
   flex-direction: column;
 }
 
+.containerNoColor {
+  padding: 20px;
+  border-radius: 5px;
+  width: 90%;
+  margin: 0 auto;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-grow: 1;
+  flex-direction: column;
+}
+
 .amenityContainer {
   background-color: #ffffff26;
   padding: 20px;
@@ -20,7 +33,8 @@
   margin: 0 auto;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
   display: flex;
-  flex-wrap: wrap;
+  flex-flow: wrap;
+  justify-content: space-between;
 }
 
 .imgLogo {
@@ -312,14 +326,32 @@
   display: flex;
   flex-direction: column;
   flex-grow: 1;
+  padding: 15px;
+}
+
+.flexColumnBookings {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  padding: 15px;
+}
+
+.flexColumnBookings > div {
+  border-radius: 15px;
+  overflow: hidden;
 }
 
 .booking {
   margin: auto;
-  border-radius: 10px;
+  background-color: rgba(42, 145, 255, 0.5);
+
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
-  padding: 5px 0;
+  padding: 5px 10px;
   display: inline-flex;
+}
+
+.imgShadow {
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
 }
 
 @media screen and (min-width: 1000px) {
