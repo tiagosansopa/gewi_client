@@ -21,7 +21,11 @@ const Layout = ({ children }) => {
   const router = useRouter();
   useEffect(() => {
     const userI = isAuth();
-    if (!userI) {
+    if (
+      !userI &&
+      !router.pathname.includes("/register") &&
+      !router.pathname.includes("/auth/activate")
+    ) {
       router.push("/login");
     }
     setUser(userI);

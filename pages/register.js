@@ -18,7 +18,7 @@ const Register = () => {
   const { name, email, password, error, success, buttonText } = state;
 
   useEffect(() => {
-    if (isAuth()) router.push("/home");
+    console.log("que pasa");
   }, []);
 
   const handleChange = (origen) => (e) => {
