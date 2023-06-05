@@ -1,7 +1,5 @@
 import { useState, useEffect, useContext } from "react";
 import { useRouter } from "next/router";
-import { GoogleLogin } from "react-google-login";
-import AppleLogin from "react-apple-login";
 import axios from "axios";
 import Link from "next/link";
 import { loginStyles } from "../styles";
@@ -80,36 +78,6 @@ const Login = () => {
     localStorage.setItem("token", token);
   };
 
-  const handleGoogleLoginSuccess = (response) => {
-    // Handle successful Google login here
-    console.log("Google login successful:", response);
-    // Set user as logged in
-    setUserLoggedIn(response.accessToken);
-    // Redirect to the dashboard or perform any other necessary actions
-    router.push("/home");
-  };
-
-  const handleGoogleLoginFailure = (error) => {
-    // Handle Google login failure/error here
-    console.error("Google login failed:", error);
-    // Display an error message or perform any other necessary actions
-  };
-
-  const handleAppleLoginSuccess = (response) => {
-    // Handle successful Apple ID login here
-    console.log("Apple ID login successful:", response);
-    // Set user as logged in
-    setUserLoggedIn(response.authorization.id_token);
-    // Redirect to the dashboard or perform any other necessary actions
-    router.push("/home");
-  };
-
-  const handleAppleLoginFailure = (error) => {
-    // Handle Apple ID login failure/error here
-    console.error("Apple ID login failed:", error);
-    // Display an error message or perform any other necessary actions
-  };
-
   return (
     <div className={loginStyles.container}>
       <img
@@ -146,27 +114,6 @@ const Login = () => {
           {buttonText}
         </button>
       </form>
-      {/* <div className={loginStyles.buttonContainer}>
-        <h3 className={loginStyles.label}>or</h3>
-        <GoogleLogin
-          clientId="86329728024-ib082hcocqake15h1vad5353i12sd1bu.apps.googleusercontent.com"
-          buttonText="Log in with Google"
-          onSuccess={handleGoogleLoginSuccess}
-          onFailure={handleGoogleLoginFailure}
-          cookiePolicy="single_host_origin"
-        />
-        <AppleLogin
-          clientId="YOUR_APPLE_CLIENT_ID"
-          redirectURI="YOUR_APPLE_REDIRECT_URI"
-          onSuccess={handleAppleLoginSuccess}
-          onFailure={handleAppleLoginFailure}
-          render={(props) => (
-            <button className={loginStyles.appleButton} onClick={props.onClick}>
-              Log in with Apple
-            </button>
-          )}
-        />
-      </div> */}
     </div>
   );
 };

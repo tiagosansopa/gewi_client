@@ -12,6 +12,14 @@
   font-style: normal;
 }
 
+/* variables */
+:root {
+  --top-navbar-height: 90px;
+  --bottom-navbar-height: 45px;
+  --top-bottom-margin-container: 20px;
+  --left-right-margin-container: 20px;
+}
+
 html,
 body {
   font-family: "GlacialIndifference", sans-serif;

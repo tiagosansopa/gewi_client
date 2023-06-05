@@ -8,7 +8,7 @@ import { isAuth } from "../helpers/auth";
 
 import axios from "axios";
 
-import { DUMMY_MESSAGES, DUMMY_AMENITIES } from "../dummy";
+import { DUMMY_AMENITIES } from "../dummy";
 
 const Home = () => {
   const router = useRouter();
@@ -44,6 +44,9 @@ const Home = () => {
   const handleAmenity = (amenity) => {
     setAmenity(amenity);
     router.push("/amenity");
+  };
+  const handleGiveAccess = () => {
+    window.alert("pendiente implementar");
   };
   return (
     <div className={homeStyles.container}>
@@ -123,6 +126,9 @@ const Home = () => {
           );
         })}
       </ul>
+      <button className={homeStyles.change} onClick={handleGiveAccess}>
+        Nuevo Mensaje
+      </button>
     </div>
   );
 };

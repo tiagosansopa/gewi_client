@@ -13,7 +13,7 @@ const Notifications = () => {
             key={notification.id}
             className={notificationsStyles.notification}
           >
-            <h1>{notification.title}</h1>
+            <h4>{notification.title}</h4>
             <h5>{notification.hour}</h5>
           </div>
         ))}

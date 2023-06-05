@@ -84,26 +84,8 @@ const Access = () => {
           })}
         </div>
       </div>
-      {/* <div className={accessStyles.listContainer}>
-        <ul className={accessStyles.list}>
-          {vigentesData.map((item, index) => (
-            <li key={index} className={accessStyles.listItem}>
-              <img
-                className={accessStyles.thumbnail}
-                src={item.thumbnail}
-                alt={`Thumbnail ${index + 1}`}
-              />
-              <div className={accessStyles.details}>
-                <h3 className={accessStyles.place}>{item.place}</h3>
-                <p className={accessStyles.dateTime}>{item.dateTime}</p>
-                <p className={accessStyles.type}>{item.type}</p>
-              </div>
-            </li>
-          ))}
-        </ul>
-      </div> */}
+      <h2 className={accessStyles.title}>Otorgados</h2>
       <div className={accessStyles.listContainer}>
-        <h2 className={accessStyles.title}>Otorgados</h2>
         <ul className={accessStyles.list}>
           {solicitadosData.map((item, index) => (
             <li key={index} className={accessStyles.listItem}>

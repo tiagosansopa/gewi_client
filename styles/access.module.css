@@ -2,7 +2,7 @@
   background-color: #ffffff26;
   padding: 20px;
   border-radius: 5px;
-  width: 90%;
+  width: 95%;
   margin: 0 auto;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
   position: relative;
@@ -12,16 +12,60 @@
   flex-direction: column;
 }
 
+.containerNew {
+  background-color: #ffffff26;
+  padding: 20px;
+  border-radius: 5px;
+  width: 95%;
+  margin: 0 auto;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+  position: relative;
+  overflow: scroll;
+  display: flex;
+  flex-grow: 1;
+  flex-direction: column;
+}
+
+.qrFocus {
+  padding: 5px;
+  border-radius: 5px;
+  width: 95%;
+  margin: auto;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-grow: 1;
+  flex-direction: column;
+}
+
+.qr {
+  display: flex;
+  flex-grow: 1;
+  flex-direction: column;
+  background-color: #ffffff;
+  margin: auto;
+  width: 95%;
+  height: 95%;
+}
+
+.qr * {
+  margin: auto;
+}
+
+.qr img {
+  width: 90%;
+  height: auto;
+}
+
 .title {
   font-size: 24px;
-  margin-bottom: 20px;
 }
 
 .buttonsContainer {
   display: flex;
   flex-direction: column;
   width: 90%;
-  margin: 0 auto;
+  margin: 10px auto;
 }
 
 .button {
@@ -45,9 +89,9 @@
 }
 
 .listContainer {
-  background-color: #ffffff26;
-  padding: 10px;
-  margin-top: 40px;
+  padding: 0 20px;
+  max-height: 800px;
+  overflow: scroll;
 }
 
 .listTitle {
@@ -58,6 +102,22 @@
 .list {
   list-style-type: none;
   padding: 0;
+  border-radius: 5px;
+  margin: 0;
+  overflow: hidden;
+}
+
+/* Custom scrollbar styles */
+.listContainer::-webkit-scrollbar {
+  width: 10px; /* Adjust the width as needed */
+}
+
+.listContainer::-webkit-scrollbar-track {
+  background: #f1f1f1; /* Adjust the background color as needed */
+}
+
+.listContainer::-webkit-scrollbar-thumb {
+  background: #888; /* Adjust the thumb color as needed */
 }
 
 .listItem {

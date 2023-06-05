@@ -28,10 +28,9 @@ const NewAccess = () => {
     setQRCodeContent(qrCodeContent);
   };
   return (
-    <div className={accessStyles.container}>
+    <div className={accessStyles.containerNew}>
       <h1>New Access</h1>
 
-      <h2 className={accessStyles.formTitle}>Formulario</h2>
       <form onSubmit={handleSubmit} className={accessStyles.form}>
         <div className={accessStyles.formGroup}>
           <label htmlFor="nombre" className={accessStyles.label}>

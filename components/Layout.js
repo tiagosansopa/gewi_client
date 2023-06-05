@@ -37,37 +37,39 @@ const Layout = ({ children }) => {
   };
   return (
     <div className={layoutStyles.container}>
-      <header className={layoutStyles.upperNavbar}>
-        {isAuth() && (
-          <div
-            className={layoutStyles.bell}
-            onClick={() => router.push("/notifications")}
-          >
-            <FontAwesomeIcon
-              icon={faBell}
-              className={layoutStyles.notificationIcon}
-            />
-          </div>
-        )}
-        <div className={layoutStyles.logo}></div>
-        {isAuth() && (
-          <div
-            className={layoutStyles.profile}
-            onClick={() => handleIconClick("/profile")}
-          >
-            <img
-              className={layoutStyles.profilePicture}
-              src={user.img}
-              alt="Profile Picture"
-            />
-            <small className={layoutStyles.profileName}>{user.name}</small>
-          </div>
-        )}
+      <header className={layoutStyles.upperNavbarWrap}>
+        <div className={layoutStyles.upperNavbar}>
+          {isAuth() && (
+            <div
+              className={layoutStyles.bell}
+              onClick={() => router.push("/notifications")}
+            >
+              <FontAwesomeIcon
+                icon={faBell}
+                className={layoutStyles.profileIcon}
+              />
+            </div>
+          )}
+          <div className={layoutStyles.logo}></div>
+          {isAuth() && (
+            <div
+              className={layoutStyles.profile}
+              onClick={() => handleIconClick("/profile")}
+            >
+              <img
+                className={layoutStyles.profilePicture}
+                src={user.img}
+                alt="Profile Picture"
+              />
+              <small className={layoutStyles.profileName}>{user.name}</small>
+            </div>
+          )}
+        </div>
       </header>
       <main className={layoutStyles.content}>{children}</main>
-      <footer className={layoutStyles.bottomNavbar}>
+      <footer className={layoutStyles.bottomNavbarWrap}>
         {isAuth() && (
-          <>
+          <div className={layoutStyles.bottomNavbar}>
             <div
               className={layoutStyles.iconContainer}
               onClick={() => handleIconClick("/access")}
@@ -113,7 +115,7 @@ const Layout = ({ children }) => {
                 className={layoutStyles.profileIcon}
               />
             </div>
-          </>
+          </div>
         )}
       </footer>
     </div>
