@@ -92,6 +92,7 @@
 
 .photoscontainer > p {
   font-size: small;
+  margin: 5px auto 0 0;
 }
 
 .amenities {

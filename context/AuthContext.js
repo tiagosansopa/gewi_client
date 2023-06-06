@@ -1,4 +1,6 @@
 import { createContext, useState } from "react";
+import { useRouter } from "next/router";
+import { logout } from "../helpers/auth";
 
 const AuthContext = createContext();
 
@@ -9,7 +11,14 @@ export const AuthProvider = ({ children }) => {
   const [qrDetail, setQrDetail] = useState();
   const [user, setUser] = useState({});
 
-  const handleAuth = () => {};
+  const handleLogOut = () => {
+    setIsAuthenticated(false);
+    setAmenity();
+    setChat();
+    setQrDetail();
+    setUser();
+    logout();
+  };
 
   return (
     <AuthContext.Provider
@@ -24,6 +33,7 @@ export const AuthProvider = ({ children }) => {
         qrDetail,
         user,
         setUser,
+        handleLogOut,
       }}
     >
       {children}

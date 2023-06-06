@@ -83,6 +83,4 @@ export const isAuth = () => {
 export const logout = () => {
   removeCookie("token");
   removeLocalStorage("user");
-  const router = useRouter();
-  router.push("/login");
 };

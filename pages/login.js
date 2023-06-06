@@ -20,6 +20,7 @@ const Login = () => {
   const { email, password, error, success, buttonText } = state;
 
   useEffect(() => {
+    console.log("hoal");
     if (isAuth()) router.push("/home");
   }, []);
 

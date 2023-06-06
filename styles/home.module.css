@@ -71,6 +71,7 @@
   width: auto;
   height: 100px;
   cursor: pointer;
+  border-radius: 5px;
 }
 
 .photoscontainer > p {

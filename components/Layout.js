@@ -33,7 +33,6 @@ const Layout = ({ children }) => {
 
   const handleIconClick = (route) => {
     if (isAuthenticated) {
-      setAmenity();
       router.push(route);
     } else {
       router.push("/login");
@@ -54,20 +53,10 @@ const Layout = ({ children }) => {
               />
             </div>
           )}
-          <div className={layoutStyles.logo}></div>
-          {isAuth() && (
-            <div
-              className={layoutStyles.profile}
-              onClick={() => handleIconClick("/profile")}
-            >
-              <img
-                className={layoutStyles.profilePicture}
-                src={user.img}
-                alt="Profile Picture"
-              />
-              <small className={layoutStyles.profileName}>{user.name}</small>
-            </div>
-          )}
+          <div
+            className={layoutStyles.logo}
+            onClick={() => handleIconClick("/")}
+          ></div>
         </div>
       </header>
       <main className={layoutStyles.content}>{children}</main>
@@ -114,10 +103,18 @@ const Layout = ({ children }) => {
               className={layoutStyles.iconContainer}
               onClick={() => handleIconClick("/profile")}
             >
-              <FontAwesomeIcon
-                icon={faUser}
-                className={layoutStyles.profileIcon}
-              />
+              {user ? (
+                <img
+                  className={layoutStyles.profilePicture}
+                  src={user.img}
+                  alt="Profile Picture"
+                />
+              ) : (
+                <FontAwesomeIcon
+                  icon={faUser}
+                  className={layoutStyles.profileIcon}
+                />
+              )}
             </div>
           </div>
         )}

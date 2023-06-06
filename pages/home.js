@@ -61,10 +61,9 @@ const Home = () => {
                 }}
               >
                 <div key={item.id} className={homeStyles.photoscontainer}>
-                  <p>{item.name}</p>
                   <img src={item.img} />
                   <p>
-                    Open from: {item.schedule.open} to: {item.schedule.close}
+                    {item.schedule.open} to: {item.schedule.close}
                   </p>
                 </div>
               </div>

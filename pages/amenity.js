@@ -140,7 +140,6 @@ const Amenity = () => {
                 <div key={item.id} className={amenityStyles.photoscontainer}>
                   <h3>{item.name}</h3>
                   <img src={item.img} className={amenityStyles.imgShadow} />
-                  <p>{item.description}</p>
                   <p>Capacidad max: {item.capacity} personas</p>
 
                   <p>

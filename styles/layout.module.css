@@ -36,6 +36,7 @@
   background-image: url("/images/logos/gewi_txt.png");
   background-size: cover;
   margin: auto;
+  cursor: pointer;
 }
 
 .profile {
@@ -46,10 +47,10 @@
 }
 
 .profilePicture {
-  width: 50px;
-  height: 50px;
+  width: 30px;
+  height: 30px;
   border-radius: 50%;
-  margin: 15px 15px 5px 15px;
+  margin: auto;
   object-position: center;
   object-fit: cover;
   cursor: pointer;

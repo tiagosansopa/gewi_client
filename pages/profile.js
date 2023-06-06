@@ -11,7 +11,7 @@ import { GoogleLogin } from "react-google-login";
 import AppleLogin from "react-apple-login";
 const profile = () => {
   const router = useRouter();
-  const { user, setUser } = useContext(AuthContext);
+  const { user, setUser, handleLogOut } = useContext(AuthContext);
   const [showContactList, setShowContactList] = useState(false);
 
   useEffect(() => {
@@ -21,6 +21,11 @@ const profile = () => {
     }
     setUser(userI);
   }, []);
+
+  const logout = () => {
+    handleLogOut();
+    router.push("/login");
+  };
 
   const handleChangeProfilePicture = () => {
     console.log("hola");
@@ -67,23 +72,29 @@ const profile = () => {
   return (
     <div className={profileStyles.container}>
       <div className={profileStyles.header}>
-        <div>
-          <img
-            className={profileStyles.profilePicture}
-            src={user.img}
-            alt="Profile Picture"
-          />
-          <button
-            className={profileStyles.changePictureButton}
-            onClick={handleChangeProfilePicture}
-          >
-            <FontAwesomeIcon icon={faCamera} />
-          </button>
-        </div>
-        <div>
-          <h2>{user.name}</h2>
-          <h3>{user.email}</h3>
-        </div>
+        {user ? (
+          <>
+            <div>
+              <img
+                className={profileStyles.profilePicture}
+                src={user.img}
+                alt="Profile Picture"
+              />
+              <button
+                className={profileStyles.changePictureButton}
+                onClick={handleChangeProfilePicture}
+              >
+                <FontAwesomeIcon icon={faCamera} />
+              </button>
+            </div>
+            <div>
+              <h2>{user.name}</h2>
+              <h3>{user.email}</h3>
+            </div>
+          </>
+        ) : (
+          <></>
+        )}
       </div>
 
       <div className={profileStyles.containers}>
@@ -111,6 +122,9 @@ const profile = () => {
             </button>
           )}
         />
+        <button className={profileStyles.change} onClick={logout}>
+          Log Out
+        </button>
         {showContactList && (
           <ul className={profileStyles.contactList}>
             {contacts.map((contact) => (
