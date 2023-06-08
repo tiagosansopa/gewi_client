@@ -5,6 +5,8 @@ import { logout } from "../helpers/auth";
 const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
+  const router = useRouter();
+
   const [isAuthenticated, setIsAuthenticated] = useState(true);
   const [amenity, setAmenity] = useState();
   const [chat, setChat] = useState();
@@ -12,11 +14,12 @@ export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState({});
 
   const handleLogOut = () => {
+    router.push("/login");
     setIsAuthenticated(false);
     setAmenity();
     setChat();
     setQrDetail();
-    setUser();
+    setUser({});
     logout();
   };
 

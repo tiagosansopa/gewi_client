@@ -1,5 +1,6 @@
 import cookie from "js-cookie";
 import { useRouter } from "next/router";
+import jwt from "jsonwebtoken";
 //set cookie
 export const setCookie = (key, value) => {
   if (process.browser) {
@@ -76,6 +77,11 @@ export const isAuth = () => {
       }
     }
   }
+};
+
+export const getDataFromToken = (token) => {
+  const name = jwt.decode(token);
+  return name;
 };
 
 //sign out

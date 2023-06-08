@@ -2,29 +2,21 @@ import { useState, useEffect, useContext } from "react";
 import AuthContext from "../context/AuthContext";
 import { profileStyles } from "../styles";
 import { useRouter } from "next/router";
-import { isAuth } from "../helpers/auth";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCamera, faAppleWhole } from "@fortawesome/free-solid-svg-icons";
 import { contacts } from "../dummy";
-
 import { GoogleLogin } from "react-google-login";
 import AppleLogin from "react-apple-login";
+import { withAuth } from "../components/withAuth";
+import { withAdmin } from "../components/withAdmin";
+
 const profile = () => {
   const router = useRouter();
-  const { user, setUser, handleLogOut } = useContext(AuthContext);
+  const { user, handleLogOut } = useContext(AuthContext);
   const [showContactList, setShowContactList] = useState(false);
-
-  useEffect(() => {
-    const userI = isAuth();
-    if (!userI) {
-      router.push("/login");
-    }
-    setUser(userI);
-  }, []);
 
   const logout = () => {
     handleLogOut();
-    router.push("/login");
   };
 
   const handleChangeProfilePicture = () => {
@@ -72,29 +64,23 @@ const profile = () => {
   return (
     <div className={profileStyles.container}>
       <div className={profileStyles.header}>
-        {user ? (
-          <>
-            <div>
-              <img
-                className={profileStyles.profilePicture}
-                src={user.img}
-                alt="Profile Picture"
-              />
-              <button
-                className={profileStyles.changePictureButton}
-                onClick={handleChangeProfilePicture}
-              >
-                <FontAwesomeIcon icon={faCamera} />
-              </button>
-            </div>
-            <div>
-              <h2>{user.name}</h2>
-              <h3>{user.email}</h3>
-            </div>
-          </>
-        ) : (
-          <></>
-        )}
+        <div>
+          <img
+            className={profileStyles.profilePicture}
+            src={user.img}
+            alt="Profile Picture"
+          />
+          <button
+            className={profileStyles.changePictureButton}
+            onClick={handleChangeProfilePicture}
+          >
+            <FontAwesomeIcon icon={faCamera} />
+          </button>
+        </div>
+        <div>
+          <h2>{user.name}</h2>
+          <h3>{user.email}</h3>
+        </div>
       </div>
 
       <div className={profileStyles.containers}>
@@ -143,4 +129,5 @@ const profile = () => {
   );
 };
 
+export const getServerSideProps = withAuth();
 export default profile;

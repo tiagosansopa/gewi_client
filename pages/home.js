@@ -16,7 +16,6 @@ const Home = () => {
   const [messages, setMessages] = useState([]);
 
   const getChats = async (user) => {
-    console.log("El usuario actual es: ", user._id);
     try {
       const response = await axios.post(
         `${process.env.NEXT_PUBLIC_API_NAME}/chats`,
@@ -31,9 +30,7 @@ const Home = () => {
   };
 
   useEffect(() => {
-    const userI = isAuth();
-    if (!userI) router.push("/login");
-    getChats(userI);
+    getChats(user);
   }, []);
 
   const handleSelectMessage = (message) => {

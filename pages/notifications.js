@@ -2,34 +2,12 @@ import { useEffect, useState, useContext } from "react";
 import AuthContext from "../context/AuthContext";
 import { notificationsStyles } from "../styles";
 import { useRouter } from "next/router";
-import { isAuth } from "../helpers/auth";
-import { contacts, DUMMY_PROFILE } from "../dummy";
-
+import { withAuth } from "../components/withAuth";
 import axios from "axios";
 
 const Notifications = () => {
+  const router = useRouter();
   const [notifications, setNotifications] = useState([]);
-
-  const getChats = async (user) => {
-    console.log("El usuario actual es: ", user._id);
-    try {
-      const response = await axios.post(
-        `${process.env.NEXT_PUBLIC_API_NAME}/notification`,
-        {
-          user,
-        }
-      );
-      setNotifications(response.data.notifications);
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
-  useEffect(() => {
-    const userI = isAuth();
-    if (!userI) router.push("/login");
-    getChats(userI);
-  }, []);
 
   return (
     <div className={notificationsStyles.container}>
@@ -50,5 +28,5 @@ const Notifications = () => {
     </div>
   );
 };
-
+export const getServerSideProps = withAuth();
 export default Notifications;
