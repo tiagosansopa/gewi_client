@@ -68,47 +68,50 @@ const Register = () => {
 
   return (
     <div className={regStyles.container}>
-      <h1>Register</h1>
-
-      <form onSubmit={handleSubmit}>
-        <div>
-          <label className={regStyles.label} htmlFor="email">
-            Name:
-          </label>
-          <input
-            className={regStyles.input}
-            type="text"
-            id="name"
-            value={name}
-            onChange={handleChange("name")}
-          />
-          <label className={regStyles.label} htmlFor="email">
-            Email:
-          </label>
-          <input
-            className={regStyles.input}
-            type="email"
-            id="email"
-            value={email}
-            onChange={handleChange("email")}
-          />
-          <label className={regStyles.label} htmlFor="email">
-            Password:
-          </label>
-          <input
-            className={regStyles.input}
-            type="password"
-            id="password"
-            value={password}
-            onChange={handleChange("password")}
-          />
-          <button className={regStyles.button} type="submit">
-            {buttonText}
-          </button>
-        </div>
-      </form>
+      <img
+        className={regStyles.imgLogo}
+        src="/images/logos/logo512.png"
+        alt="Gewi Logo"
+      />
       <h2>{success && success}</h2>
       <h2>{error && error}</h2>
+
+      <form className={regStyles.form} onSubmit={handleSubmit}>
+        <h1>Register</h1>
+        <label className={regStyles.label} htmlFor="email">
+          Name:
+        </label>
+        <input
+          className={regStyles.input}
+          type="text"
+          id="name"
+          value={name}
+          onChange={handleChange("name")}
+        />
+        <label className={regStyles.label} htmlFor="email">
+          Email:
+        </label>
+        <input
+          className={regStyles.input}
+          type="email"
+          id="email"
+          value={email}
+          onChange={handleChange("email")}
+        />
+        <label className={regStyles.label} htmlFor="email">
+          Password:
+        </label>
+        <input
+          className={regStyles.input}
+          type="password"
+          id="password"
+          value={password}
+          onChange={handleChange("password")}
+        />
+        <button className={regStyles.button} type="submit">
+          {buttonText}
+        </button>
+      </form>
     </div>
   );
 };
