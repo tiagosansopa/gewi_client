@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import DatePicker from "react-datepicker";
 import QRCode from "qrcode.react";
 import "react-datepicker/dist/react-datepicker.css";
-
+import { withAuth } from "../../components/withAuth";
 import { viviendaOptions, months, type } from "../../dummy";
 import { useRouter } from "next/router";
 import { accessStyles } from "../../styles";
@@ -113,5 +113,5 @@ const NewAccess = () => {
     </div>
   );
 };
-
+export const getServerSideProps = withAuth();
 export default NewAccess;

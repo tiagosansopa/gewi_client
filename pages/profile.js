@@ -37,7 +37,7 @@ const profile = () => {
     // Set user as logged in
     setUserLoggedIn(response.accessToken);
     // Redirect to the dashboard or perform any other necessary actions
-    router.push("/home");
+    router.push("/");
   };
 
   const handleGoogleLoginFailure = (error) => {
@@ -52,7 +52,7 @@ const profile = () => {
     // Set user as logged in
     setUserLoggedIn(response.authorization.id_token);
     // Redirect to the dashboard or perform any other necessary actions
-    router.push("/home");
+    router.push("/");
   };
 
   const handleAppleLoginFailure = (error) => {

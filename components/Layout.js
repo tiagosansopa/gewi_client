@@ -1,9 +1,10 @@
 import { useContext, useEffect } from "react";
 import { useRouter } from "next/router";
 import { layoutStyles } from "../styles";
-import AuthContext from "../context/AuthContext";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { withAuth } from "./withAuth";
 import { isAuth } from "../helpers/auth";
+import AuthContext from "../context/AuthContext";
 import {
   faBell,
   faUser,
@@ -12,7 +13,6 @@ import {
   faHome,
   faCouch,
 } from "@fortawesome/free-solid-svg-icons";
-//import { MongoClient } from "mongodb";
 import Link from "next/link";
 
 const Layout = ({ children }) => {
@@ -20,6 +20,7 @@ const Layout = ({ children }) => {
     useContext(AuthContext);
   const router = useRouter();
   useEffect(() => {
+    console.log("layout render");
     const userI = isAuth();
     setUser(userI);
   }, []);
@@ -76,7 +77,7 @@ const Layout = ({ children }) => {
             </div>
             <div
               className={layoutStyles.iconContainer}
-              onClick={() => handleIconClick("/home")}
+              onClick={() => handleIconClick("/")}
             >
               <FontAwesomeIcon
                 icon={faHome}
@@ -116,4 +117,5 @@ const Layout = ({ children }) => {
   );
 };
 
+export const getServerSideProps = withAuth();
 export default Layout;

@@ -1,5 +1,6 @@
 import { useContext, useState, useEffect } from "react";
 import AuthContext from "../context/AuthContext";
+import { withAuth } from "../components/withAuth";
 import { chatStyles } from "../styles";
 import { useRouter } from "next/router";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -59,7 +60,7 @@ const Chat = () => {
         <div className={chatStyles.leftArrow}>
           <FontAwesomeIcon
             icon={faArrowLeft}
-            onClick={() => router.push("/home")}
+            onClick={() => router.push("/")}
           />
         </div>
         <div className={chatStyles.header}>
@@ -122,5 +123,5 @@ const Chat = () => {
     </div>
   );
 };
-
+export const getServerSideProps = withAuth();
 export default Chat;

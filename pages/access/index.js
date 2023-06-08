@@ -3,15 +3,15 @@ import { accessStyles } from "../../styles";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import AuthContext from "../../context/AuthContext";
 import axios from "axios";
+import { withAuth } from "../../components/withAuth";
 import {
   faPlus,
   faCar,
   faPersonRunning,
   faHelicopter,
 } from "@fortawesome/free-solid-svg-icons";
-import { authenticate, isAuth } from "../../helpers/auth";
 import { useRouter } from "next/router";
-import { vigentesData, solicitadosData } from "../../dummy";
+import { solicitadosData } from "../../dummy";
 
 const Access = () => {
   const router = useRouter();
@@ -31,8 +31,6 @@ const Access = () => {
   };
 
   useEffect(() => {
-    if (!isAuth()) router.push("/login");
-
     getVigentes();
   }, []);
 
@@ -114,4 +112,5 @@ const Access = () => {
     </div>
   );
 };
+export const getServerSideProps = withAuth();
 export default Access;

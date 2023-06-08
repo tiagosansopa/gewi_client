@@ -1,16 +1,12 @@
 import { useState, useEffect } from "react";
 import { payStyles } from "../../styles";
 import { useRouter } from "next/router";
-import { isAuth } from "../../helpers/auth";
+import { withAuth } from "../../components/withAuth";
 import { months, paymentData } from "../../dummy";
 
 const Statement = () => {
   const router = useRouter();
   const [selectedMonth, setSelectedMonth] = useState("");
-
-  useEffect(() => {
-    if (!isAuth()) router.push("/login");
-  }, []);
 
   const handleMonthChange = (event) => {
     setSelectedMonth(event.target.value);
@@ -78,4 +74,5 @@ const Statement = () => {
     </div>
   );
 };
+export const getServerSideProps = withAuth();
 export default Statement;

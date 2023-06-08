@@ -19,11 +19,6 @@ const Login = () => {
 
   const { email, password, error, success, buttonText } = state;
 
-  useEffect(() => {
-    console.log("hoal");
-    if (isAuth()) router.push("/home");
-  }, []);
-
   const handleChange = (origen) => (e) => {
     setState({
       ...state,
@@ -54,7 +49,7 @@ const Login = () => {
         setUser(response.data.user);
         isAuth() && isAuth().role === "admin"
           ? router.push("/admin")
-          : router.push("/home");
+          : router.push("/");
       });
       setState({
         ...state,
@@ -118,5 +113,4 @@ const Login = () => {
     </div>
   );
 };
-
 export default Login;

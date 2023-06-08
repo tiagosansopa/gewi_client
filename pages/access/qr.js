@@ -1,5 +1,6 @@
 import { useEffect, useState, useContext } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { withAuth } from "../../components/withAuth";
 import {
   faPlus,
   faCar,
@@ -26,4 +27,5 @@ const QR = () => {
     </div>
   );
 };
+export const getServerSideProps = withAuth();
 export default QR;

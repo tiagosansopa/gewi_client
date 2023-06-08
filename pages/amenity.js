@@ -1,5 +1,6 @@
 import { useContext, useState, useEffect } from "react";
 import AuthContext from "../context/AuthContext";
+import { withAuth } from "../components/withAuth";
 import { amenityStyles } from "../styles";
 import { useRouter } from "next/router";
 import axios from "axios";
@@ -120,7 +121,7 @@ const Amenity = () => {
         <div className={amenityStyles.leftArrow}>
           <FontAwesomeIcon
             icon={faArrowLeft}
-            onClick={() => router.push("/home")}
+            onClick={() => router.push("/")}
           />
         </div>
         <div className={amenityStyles.header}>
@@ -249,5 +250,5 @@ const Amenity = () => {
     </div>
   );
 };
-
+export const getServerSideProps = withAuth();
 export default Amenity;
