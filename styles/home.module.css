@@ -50,6 +50,14 @@
   overflow: scroll;
 }
 
+.toAllMessages {
+  width: 100%;
+}
+
+.allMessage {
+  margin: 0 0 0 auto;
+}
+
 .photoscontainerWrap {
   transition: all 0.3s ease-out;
   border: 5px solid #ffffff00;

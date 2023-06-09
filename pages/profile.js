@@ -4,7 +4,7 @@ import { profileStyles } from "../styles";
 import { useRouter } from "next/router";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCamera, faAppleWhole } from "@fortawesome/free-solid-svg-icons";
-import { contacts } from "../dummy";
+
 import { GoogleLogin } from "react-google-login";
 import AppleLogin from "react-apple-login";
 import { withAuth } from "../components/withAuth";
@@ -13,7 +13,6 @@ import { withAdmin } from "../components/withAdmin";
 const profile = () => {
   const router = useRouter();
   const { user, handleLogOut } = useContext(AuthContext);
-  const [showContactList, setShowContactList] = useState(false);
 
   const logout = () => {
     handleLogOut();
@@ -111,19 +110,6 @@ const profile = () => {
         <button className={profileStyles.change} onClick={logout}>
           Log Out
         </button>
-        {showContactList && (
-          <ul className={profileStyles.contactList}>
-            {contacts.map((contact) => (
-              <li
-                key={contact.id}
-                className={profileStyles.contact}
-                onClick={() => handleContactClick(contact)}
-              >
-                {contact.name}
-              </li>
-            ))}
-          </ul>
-        )}
       </div>
     </div>
   );

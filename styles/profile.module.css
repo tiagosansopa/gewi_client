@@ -198,26 +198,6 @@
   margin: auto auto auto 10px;
 }
 
-.contactList {
-  list-style-type: none;
-  padding: 0;
-  margin: 0;
-}
-
-.contact {
-  padding: 10px;
-  border-bottom: 1px solid #ccc;
-  cursor: pointer;
-}
-
-.contact:last-child {
-  border-bottom: none;
-}
-
-.contact:hover {
-  background-color: #f1f1f1;
-}
-
 @media screen and (min-width: 768px) {
   .content {
     align-items: center;

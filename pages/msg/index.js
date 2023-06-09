@@ -1,16 +1,16 @@
 import { useEffect, useState, useContext } from "react";
-import { withAuth } from "../components/withAuth";
-import AuthContext from "../context/AuthContext";
-import { homeStyles } from "../styles";
+import { withAuth } from "../../components/withAuth";
+import AuthContext from "../../context/AuthContext";
+import { chatStyles } from "../../styles";
 import { useRouter } from "next/router";
 import axios from "axios";
-
-import { DUMMY_AMENITIES } from "../dummy";
-
-const Home = ({ user }) => {
+import { contacts } from "../../dummy";
+const Messages = ({ user }) => {
   const router = useRouter();
-  const { setChat, setAmenity } = useContext(AuthContext);
+  const [showContactList, setShowContactList] = useState(false);
   const [messages, setMessages] = useState([]);
+
+  const { setChat } = useContext(AuthContext);
 
   const getChats = async (user) => {
     try {
@@ -26,50 +26,41 @@ const Home = ({ user }) => {
     }
   };
 
-  useEffect(() => {
-    getChats(user);
-  }, []);
-
   const handleSelectMessage = (message) => {
     setChat(message.sender);
     router.push("/chat");
   };
 
-  const handleAmenity = (amenity) => {
-    setAmenity(amenity);
-    router.push("/amenity");
+  const handleNewMessage = () => {
+    setShowContactList(true);
   };
-  const handleGoMessages = () => {
-    router.push("/msg");
-  };
-  return (
-    <div className={homeStyles.container}>
-      <div className={homeStyles.amenities}>
-        <div className={homeStyles.photos}>
-          {DUMMY_AMENITIES.map((item) => {
-            return (
-              <div
-                className={homeStyles.photoscontainerWrap}
-                onClick={() => {
-                  handleAmenity(item);
-                }}
-              >
-                <div key={item.id} className={homeStyles.photoscontainer}>
-                  <img src={item.img} />
-                  <p>
-                    {item.schedule.open} to: {item.schedule.close}
-                  </p>
-                </div>
-              </div>
-            );
-          })}
-        </div>
-      </div>
-      <ul className={homeStyles.messagePreviewList}>
-        <button onClick={handleGoMessages} className={homeStyles.allMessage}>
-          Go to all
-        </button>
 
+  const handleContactClick = (message) => {
+    setChat(user);
+    router.push("/chat");
+  };
+
+  useEffect(() => {
+    getChats(user);
+  }, []);
+
+  return (
+    <div className={chatStyles.container}>
+      {showContactList && (
+        <ul className={chatStyles.contactList}>
+          {contacts.map((contact) => (
+            <li
+              key={contact.id}
+              className={chatStyles.contact}
+              onClick={() => handleContactClick(contact)}
+            >
+              {contact.name}
+            </li>
+          ))}
+        </ul>
+      )}
+
+      <ul className={chatStyles.messagePreviewList}>
         {messages.map((message) => {
           const specificDate = new Date(message.createdAt);
           const currentDate = new Date();
@@ -110,11 +101,11 @@ const Home = ({ user }) => {
           return (
             <li
               key={message.id}
-              className={`${homeStyles.messagePreview} `}
+              className={`${chatStyles.messagePreview} `}
               onClick={() => handleSelectMessage(message)}
             >
               <img src={message.sender.img} alt="Message Icon" />
-              <div className={homeStyles.messageContent}>
+              <div className={chatStyles.messageContent}>
                 <span>{message.sender.name}</span>
                 <p>{message.message}</p>
               </div>
@@ -123,8 +114,11 @@ const Home = ({ user }) => {
           );
         })}
       </ul>
+      <button className={chatStyles.change} onClick={handleNewMessage}>
+        Nuevo Mensaje
+      </button>
     </div>
   );
 };
 export const getServerSideProps = withAuth();
-export default Home;
+export default Messages;
