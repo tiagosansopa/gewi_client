@@ -5,7 +5,7 @@ import Link from "next/link";
 import { loginStyles } from "../styles";
 import AuthContext from "../context/AuthContext";
 import { authenticate, isAuth } from "../helpers/auth";
-
+import { notAuth } from "../components/notAuth";
 const Login = () => {
   const { setUser } = useContext(AuthContext);
   const router = useRouter();
@@ -113,4 +113,5 @@ const Login = () => {
     </div>
   );
 };
+export const getServerSideProps = notAuth();
 export default Login;

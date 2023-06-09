@@ -8,6 +8,26 @@ import axios from "axios";
 const Notifications = () => {
   const router = useRouter();
   const [notifications, setNotifications] = useState([]);
+  const { user } = useContext(AuthContext);
+
+  const getNotifications = async () => {
+    console.log("getNotifications from user ", user);
+    try {
+      const response = await axios.post(
+        `${process.env.NEXT_PUBLIC_API_NAME}/notification`,
+        {
+          user: user._id,
+        }
+      );
+      setNotifications(response.data.notifications);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    getNotifications();
+  }, []);
 
   return (
     <div className={notificationsStyles.container}>

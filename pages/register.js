@@ -2,7 +2,7 @@ import { regStyles } from "../styles";
 import { useState, useEffect } from "react";
 import { useRouter } from "next/router";
 import axios from "axios";
-import { isAuth } from "../helpers/auth";
+import { notAuth } from "../components/notAuth";
 
 const Register = () => {
   const router = useRouter();
@@ -115,5 +115,5 @@ const Register = () => {
     </div>
   );
 };
-
+export const getServerSideProps = notAuth();
 export default Register;

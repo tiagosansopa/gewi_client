@@ -2,6 +2,7 @@ import { useRouter } from "next/router";
 import { useState, useEffect } from "react";
 import jwt from "jsonwebtoken";
 import axios from "axios";
+import { notAuth } from "../../../components/notAuth";
 
 const ActivateAccount = () => {
   const router = useRouter();
@@ -60,5 +61,5 @@ const ActivateAccount = () => {
     </div>
   );
 };
-
+export const getServerSideProps = notAuth();
 export default ActivateAccount;

@@ -8,9 +8,9 @@ import axios from "axios";
 
 import { DUMMY_AMENITIES } from "../dummy";
 
-const Home = () => {
+const Home = ({ user }) => {
   const router = useRouter();
-  const { setChat, setAmenity, user } = useContext(AuthContext);
+  const { setChat, setAmenity } = useContext(AuthContext);
   const [messages, setMessages] = useState([]);
 
   const getChats = async (user) => {

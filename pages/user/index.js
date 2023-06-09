@@ -1,4 +1,3 @@
-import { isAuth } from "../../helpers/auth";
 import { getCookie } from "../../helpers/auth";
 import axios from "axios";
 

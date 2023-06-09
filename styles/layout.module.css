@@ -22,8 +22,15 @@
   background-color: #000000;
 }
 
+.bellWrap {
+  position: absolute;
+  display: flex;
+  width: var(--top-navbar-height);
+  height: var(--top-navbar-height);
+}
+
 .bell {
-  margin: auto auto auto 20px;
+  margin: auto auto auto auto;
   display: flex;
   align-items: center;
   cursor: pointer;
@@ -32,9 +39,7 @@
 
 .logo {
   height: 80px;
-  width: 100px;
-  background-image: url("/images/logos/gewi_txt.png");
-  background-size: cover;
+  width: auto;
   margin: auto;
   cursor: pointer;
 }

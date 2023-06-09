@@ -3,8 +3,8 @@ import { useRouter } from "next/router";
 import { layoutStyles } from "../styles";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { withAuth } from "./withAuth";
-import { isAuth } from "../helpers/auth";
 import AuthContext from "../context/AuthContext";
+
 import {
   faBell,
   faUser,
@@ -16,106 +16,105 @@ import {
 import Link from "next/link";
 
 const Layout = ({ children }) => {
-  const { setAmenity, isAuthenticated, setUser, user } =
-    useContext(AuthContext);
+  const { setAmenity, setUser } = useContext(AuthContext);
   const router = useRouter();
+  const user = children.props.user;
+  setUser(user);
+
   useEffect(() => {
-    console.log("layout render");
-    const userI = isAuth();
-    setUser(userI);
+    console.log("layout rendered");
   }, []);
 
   const handleIconClick = (route) => {
-    if (isAuthenticated) {
-      router.push(route);
-    } else {
-      router.push("/login");
-    }
+    router.push(route);
   };
+
   return (
     <div className={layoutStyles.container}>
       <header className={layoutStyles.upperNavbarWrap}>
         <div className={layoutStyles.upperNavbar}>
-          {isAuth() && (
-            <div
-              className={layoutStyles.bell}
-              onClick={() => router.push("/notifications")}
-            >
-              <FontAwesomeIcon
-                icon={faBell}
-                className={layoutStyles.profileIcon}
-              />
+          {user && (
+            <div className={layoutStyles.bellWrap}>
+              <div
+                className={layoutStyles.bell}
+                onClick={() => router.push("/notifications")}
+              >
+                <FontAwesomeIcon
+                  icon={faBell}
+                  className={layoutStyles.profileIcon}
+                />
+              </div>
             </div>
           )}
-          <div
+
+          <img
             className={layoutStyles.logo}
+            src={"/images/logos/gewi_txt.png"}
             onClick={() => handleIconClick("/")}
-          ></div>
+          />
         </div>
       </header>
       <main className={layoutStyles.content}>{children}</main>
       <footer className={layoutStyles.bottomNavbarWrap}>
-        {isAuth() && (
-          <div className={layoutStyles.bottomNavbar}>
-            <div
-              className={layoutStyles.iconContainer}
-              onClick={() => handleIconClick("/access")}
-            >
-              <FontAwesomeIcon
-                icon={faCar}
-                className={layoutStyles.profileIcon}
-              />
-            </div>
-            <div
-              className={layoutStyles.iconContainer}
-              onClick={() => handleIconClick("/statement")}
-            >
-              <FontAwesomeIcon
-                icon={faWallet}
-                className={layoutStyles.profileIcon}
-              />
-            </div>
-            <div
-              className={layoutStyles.iconContainer}
-              onClick={() => handleIconClick("/")}
-            >
-              <FontAwesomeIcon
-                icon={faHome}
-                className={layoutStyles.profileIcon}
-              />
-            </div>
-            <div
-              className={layoutStyles.iconContainer}
-              onClick={() => handleIconClick("/amenity")}
-            >
-              <FontAwesomeIcon
-                icon={faCouch}
-                className={layoutStyles.profileIcon}
-              />
-            </div>
-            <div
-              className={layoutStyles.iconContainer}
-              onClick={() => handleIconClick("/profile")}
-            >
-              {user ? (
+        <div className={layoutStyles.bottomNavbar}>
+          {user && (
+            <>
+              <div
+                className={layoutStyles.iconContainer}
+                onClick={() => handleIconClick("/access")}
+              >
+                <FontAwesomeIcon
+                  icon={faCar}
+                  className={layoutStyles.profileIcon}
+                />
+              </div>
+              <div
+                className={layoutStyles.iconContainer}
+                onClick={() => handleIconClick("/statement")}
+              >
+                <FontAwesomeIcon
+                  icon={faWallet}
+                  className={layoutStyles.profileIcon}
+                />
+              </div>
+              <div
+                className={layoutStyles.iconContainer}
+                onClick={() => handleIconClick("/")}
+              >
+                <FontAwesomeIcon
+                  icon={faHome}
+                  className={layoutStyles.profileIcon}
+                />
+              </div>
+              <div
+                className={layoutStyles.iconContainer}
+                onClick={() => handleIconClick("/amenity")}
+              >
+                <FontAwesomeIcon
+                  icon={faCouch}
+                  className={layoutStyles.profileIcon}
+                />
+              </div>
+              <div
+                className={layoutStyles.iconContainer}
+                onClick={() => handleIconClick("/profile")}
+              >
                 <img
                   className={layoutStyles.profilePicture}
                   src={user.img}
                   alt="Profile Picture"
                 />
-              ) : (
-                <FontAwesomeIcon
+                {/* <FontAwesomeIcon
                   icon={faUser}
                   className={layoutStyles.profileIcon}
-                />
-              )}
-            </div>
-          </div>
-        )}
+                /> */}
+              </div>
+            </>
+          )}
+        </div>
       </footer>
     </div>
   );
 };
-
 export const getServerSideProps = withAuth();
 export default Layout;

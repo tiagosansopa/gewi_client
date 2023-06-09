@@ -1,12 +1,12 @@
 import { getDataFromToken } from "../helpers/auth";
-export function withAuth(getServerSidePropsFunc) {
+export function notAuth(getServerSidePropsFunc) {
   return async (context) => {
     const { req, res } = context;
     const user = getDataFromToken(req.cookies.token);
-    if (!req.cookies.token || !user) {
+    if (user) {
       return {
         redirect: {
-          destination: "/login",
+          destination: "/",
           permanent: false,
         },
       };

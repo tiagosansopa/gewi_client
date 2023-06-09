@@ -1,6 +1,6 @@
 import { createContext, useState } from "react";
 import { useRouter } from "next/router";
-import { logout } from "../helpers/auth";
+import { logout, isAuth } from "../helpers/auth";
 
 const AuthContext = createContext();
 
@@ -12,6 +12,13 @@ export const AuthProvider = ({ children }) => {
   const [chat, setChat] = useState();
   const [qrDetail, setQrDetail] = useState();
   const [user, setUser] = useState({});
+
+  const readLocalStorage = () => {
+    const loggedUser = isAuth();
+    if (loggedUser) {
+      setUser(loggedUser);
+    }
+  };
 
   const handleLogOut = () => {
     router.push("/login");

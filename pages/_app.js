@@ -9,12 +9,10 @@ function MyApp({ Component, pageProps }) {
     <AuthProvider>
       <Head>
         <title>GEWI</title>
-        <link rel="icon" href="/images/logos/favicon.ico" />{" "}
         <meta name="mobile-web-app-capable" content="yes" />
         <meta name="theme-color" content="#FFFFFF" />{" "}
         {/* <meta name='viewport' content='minimum-scale=1, initial-scale=1, width=device-width, shrink-to-fit=no, viewport-fit=cover' /> */}
         <link rel="manifest" href="/manifest.json" />
-        <link rel="shortcut icon" href="/images/logos/favicon.ico" />
       </Head>
       <Layout>
         <Component {...pageProps} />
