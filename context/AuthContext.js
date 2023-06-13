@@ -1,6 +1,11 @@
-import { createContext, useState } from "react";
+import { createContext, useDebugValue, useEffect, useState } from "react";
 import { useRouter } from "next/router";
-import { logout, isAuth } from "../helpers/auth";
+import {
+  logout,
+  isAuth,
+  setLocalStorage,
+  getLocalStorage,
+} from "../helpers/auth";
 
 const AuthContext = createContext();
 
@@ -8,16 +13,35 @@ export const AuthProvider = ({ children }) => {
   const router = useRouter();
 
   const [isAuthenticated, setIsAuthenticated] = useState(true);
-  const [amenity, setAmenity] = useState();
-  const [chat, setChat] = useState();
-  const [qrDetail, setQrDetail] = useState();
+  const [amenity, setAmenity] = useState({});
+  const [chat, setChat] = useState({});
+  const [qrDetail, setQrDetail] = useState({});
   const [user, setUser] = useState({});
 
   const readLocalStorage = () => {
-    const loggedUser = isAuth();
-    if (loggedUser) {
-      setUser(loggedUser);
-    }
+    const workAround = getLocalStorage("ctxt");
+    const {
+      amenity: prevAme,
+      chat: prevChat,
+      qrDetail: qr,
+      user: preUser,
+    } = workAround;
+    setAmenity(prevAme);
+    setChat(prevChat);
+    setQrDetail(qr);
+    setUser(setUser);
+    console.log("lei el local", workAround);
+    return workAround;
+  };
+
+  const handleContextChange = () => {
+    const context = {
+      amenity,
+      chat,
+      qrDetail,
+      user,
+    };
+    setLocalStorage("ctxt", context);
   };
 
   const handleLogOut = () => {
@@ -44,6 +68,8 @@ export const AuthProvider = ({ children }) => {
         user,
         setUser,
         handleLogOut,
+        handleContextChange,
+        readLocalStorage,
       }}
     >
       {children}

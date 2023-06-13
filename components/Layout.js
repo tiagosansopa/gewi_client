@@ -16,7 +16,7 @@ import {
 import Link from "next/link";
 
 const Layout = ({ children }) => {
-  const { setAmenity, setUser } = useContext(AuthContext);
+  const { setUser } = useContext(AuthContext);
   const router = useRouter();
   const user = children.props.user;
   setUser(user);

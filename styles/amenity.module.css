@@ -95,6 +95,23 @@
   margin: 5px auto 0 0;
 }
 
+.headerSection {
+  display: flex;
+  align-content: center;
+}
+.headerSection > div {
+  width: 25%;
+  margin: 0 auto 0 auto;
+}
+
+.amenityImg {
+  display: block;
+  max-width: 200px;
+  width: auto;
+  height: auto;
+  border-radius: 5px;
+}
+
 .amenities {
   width: 100%;
   margin: 20px 0px;
@@ -344,21 +361,11 @@
   flex-grow: 1;
   padding: 15px;
 }
-
-.flexColumnBookings {
-  display: flex;
-  flex-direction: column;
-  flex-grow: 1;
-  padding: 15px;
-}
-
-.flexColumnBookings > div {
-  border-radius: 15px;
-  overflow: hidden;
-}
-
-.booking {
+.calendarWrapper {
   margin: auto;
+}
+.booking {
+  margin: 10px 5px;
   background-color: rgba(42, 145, 255, 0.5);
 
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);

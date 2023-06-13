@@ -79,6 +79,12 @@ export const isAuth = () => {
   }
 };
 
+export const getLocalStorage = (key) => {
+  if (localStorage.getItem(key)) {
+    return JSON.parse(localStorage.getItem(key));
+  }
+};
+
 export const getDataFromToken = (token) => {
   const name = jwt.decode(token);
   return name;

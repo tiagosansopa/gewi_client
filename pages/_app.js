@@ -1,5 +1,7 @@
 import Layout from "../components/Layout";
 import "../styles/globals.css";
+
+import "../styles/react-datepicker.css";
 import { AuthProvider } from "../context/AuthContext";
 import dynamic from "next/dynamic";
 import Head from "next/head";

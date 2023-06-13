@@ -9,7 +9,7 @@ import { DUMMY_AMENITIES } from "../dummy";
 
 const Home = ({ user }) => {
   const router = useRouter();
-  const { setChat, setAmenity } = useContext(AuthContext);
+  const { setChat, setAmenity, handleContextChange } = useContext(AuthContext);
   const [messages, setMessages] = useState([]);
 
   const getChats = async (user) => {
@@ -37,6 +37,7 @@ const Home = ({ user }) => {
 
   const handleAmenity = (amenity) => {
     setAmenity(amenity);
+    handleContextChange();
     router.push("/amenity");
   };
   const handleGoMessages = () => {
