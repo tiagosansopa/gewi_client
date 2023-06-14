@@ -17,6 +17,7 @@ export const AuthProvider = ({ children }) => {
   const [chat, setChat] = useState({});
   const [qrDetail, setQrDetail] = useState({});
   const [user, setUser] = useState({});
+  const [isDarkMode, setIsDarkMode] = useState(false);
 
   const readLocalStorage = () => {
     const workAround = getLocalStorage("ctxt");
@@ -54,6 +55,10 @@ export const AuthProvider = ({ children }) => {
     logout();
   };
 
+  const handleToggle = () => {
+    setIsDarkMode(!isDarkMode);
+  };
+
   return (
     <AuthContext.Provider
       value={{
@@ -70,6 +75,8 @@ export const AuthProvider = ({ children }) => {
         handleLogOut,
         handleContextChange,
         readLocalStorage,
+        handleToggle,
+        isDarkMode,
       }}
     >
       {children}

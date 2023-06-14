@@ -1,12 +1,26 @@
 /* components/MessageList.module.css */
 
 .container {
-  background-image: url("/images/background/bck.jpg");
-  background-size: cover;
   display: flex;
   flex-direction: column;
   max-height: 100vh;
   max-width: 100vw;
+  background-color: var(--dark-theme-color);
+}
+.bg {
+  transition: all 0.5s linear;
+  content: var(--light-theme-background);
+  opacity: 0.6;
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.dark {
+  opacity: 0;
+  background-color: var(--dark-theme-color);
 }
 
 /* ... upper nav ... */
@@ -20,6 +34,7 @@
 }
 .upperNavbarWrap {
   background-color: #000000;
+  z-index: 1;
 }
 
 .bellWrap {
@@ -93,6 +108,7 @@
 
 .bottomNavbarWrap {
   background-color: #000000;
+  z-index: 1;
 }
 
 .iconContainer {
@@ -105,6 +121,35 @@
 .profileIcon {
   font-size: 18px;
   margin-right: 10px;
+}
+
+.themeSwitch {
+  position: relative;
+  width: 60px;
+  height: 30px;
+  border-radius: 15px;
+  background-color: #ccc;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.themeSwitch.darkMode {
+  background-color: #333;
+}
+
+.slider {
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background-color: #fff;
+  transition: transform 0.3s;
+}
+
+.themeSwitch.darkMode .slider {
+  transform: translateX(30px);
 }
 
 /* Media queries for small mobile devices */

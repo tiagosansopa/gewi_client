@@ -16,7 +16,7 @@ import {
 import Link from "next/link";
 
 const Layout = ({ children }) => {
-  const { setUser } = useContext(AuthContext);
+  const { setUser, isDarkMode, handleToggle } = useContext(AuthContext);
   const router = useRouter();
   const user = children.props.user;
   setUser(user);
@@ -30,7 +30,15 @@ const Layout = ({ children }) => {
   };
 
   return (
-    <div className={layoutStyles.container}>
+    <div
+      className={`${layoutStyles.container}  ${
+        isDarkMode ? layoutStyles.darkdark : ""
+      }`}
+    >
+      <img
+        className={`${layoutStyles.bg} ${isDarkMode ? layoutStyles.dark : ""}`}
+        alt=""
+      ></img>
       <header className={layoutStyles.upperNavbarWrap}>
         <div className={layoutStyles.upperNavbar}>
           {user && (

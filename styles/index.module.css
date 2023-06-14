@@ -1,6 +1,6 @@
 /* components/MessageList.module.css */
 .container {
-  background-image: url("/images/background/bck.jpg");
+  background-image: var(--light-theme-background);
   background-size: cover;
   display: flex;
   flex-direction: column;

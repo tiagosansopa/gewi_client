@@ -22,7 +22,6 @@
   color: #ffffff;
 }
 .container {
-  background-color: #ffffff26;
   padding: 20px;
   border-radius: 5px;
   width: 95%;
@@ -79,7 +78,7 @@
   width: auto;
   height: 100px;
   cursor: pointer;
-  border-radius: 5px;
+  border-radius: 10px;
 }
 
 .photoscontainer > p {

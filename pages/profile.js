@@ -1,6 +1,6 @@
 import { useState, useEffect, useContext } from "react";
 import AuthContext from "../context/AuthContext";
-import { profileStyles } from "../styles";
+import { profileStyles, layoutStyles } from "../styles";
 import { useRouter } from "next/router";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCamera, faAppleWhole } from "@fortawesome/free-solid-svg-icons";
@@ -12,7 +12,8 @@ import { withAdmin } from "../components/withAdmin";
 
 const profile = () => {
   const router = useRouter();
-  const { user, handleLogOut } = useContext(AuthContext);
+  const { user, handleLogOut, isDarkMode, handleToggle } =
+    useContext(AuthContext);
 
   const logout = () => {
     handleLogOut();
@@ -83,6 +84,19 @@ const profile = () => {
       </div>
 
       <div className={profileStyles.containers}>
+        <div>
+          <h3>Theme: </h3>
+          <div>
+            <div
+              className={`${layoutStyles.themeSwitch} ${
+                isDarkMode ? layoutStyles.darkMode : ""
+              }`}
+              onClick={handleToggle}
+            >
+              <div className={layoutStyles.slider} />
+            </div>
+          </div>
+        </div>
         <button className={profileStyles.change} onClick={handleGiveAccess}>
           Change Password
         </button>
