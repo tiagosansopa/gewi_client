@@ -36,6 +36,7 @@ export const AuthProvider = ({ children }) => {
   };
 
   const handleContextChange = () => {
+    console.log("voy a guardar la amenidad ", amenity);
     const context = {
       amenity,
       chat,

@@ -16,7 +16,7 @@ import {
 
 const Amenity = () => {
   const router = useRouter();
-  const { setAmenity, handleContextChange } = useContext(AuthContext);
+  const { amenity, setAmenity, handleContextChange } = useContext(AuthContext);
   const [amenityList, setSetAmenityList] = useState([]);
 
   const getAmenities = async () => {
@@ -34,10 +34,21 @@ const Amenity = () => {
     getAmenities();
   }, []);
 
+  useEffect(() => {
+    // Read the state value here
+    console.log("Name:", amenity, !amenity.id);
+
+    // Check if the name is empty, and if so, perform an action (e.g., fetch data, display a message)
+    if (amenity.id) {
+      handleContextChange();
+      router.push("/book");
+    }
+
+    //
+  }, [amenity.id]);
+
   const handleAmenity = (amenity) => {
     setAmenity(amenity);
-    handleContextChange();
-    router.push("/book");
   };
 
   return (

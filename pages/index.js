@@ -9,7 +9,8 @@ import { DUMMY_AMENITIES } from "../dummy";
 
 const Home = ({ user }) => {
   const router = useRouter();
-  const { setChat, setAmenity, handleContextChange } = useContext(AuthContext);
+  const { amenity, setChat, setAmenity, handleContextChange } =
+    useContext(AuthContext);
   const [messages, setMessages] = useState([]);
 
   const getChats = async (user) => {
@@ -35,10 +36,21 @@ const Home = ({ user }) => {
     router.push("/chat");
   };
 
-  const handleAmenity = (amenity) => {
-    setAmenity(amenity);
-    handleContextChange();
-    router.push("/amenity");
+  useEffect(() => {
+    // Read the state value here
+    console.log("Name:", amenity, !amenity._id);
+
+    // Check if the name is empty, and if so, perform an action (e.g., fetch data, display a message)
+    if (amenity._id) {
+      handleContextChange();
+      router.push("/book");
+    }
+
+    //
+  }, [amenity._id]);
+
+  const handleAmenity = (a) => {
+    setAmenity(a);
   };
   const handleGoMessages = () => {
     router.push("/msg");

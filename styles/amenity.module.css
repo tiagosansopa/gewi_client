@@ -358,11 +358,14 @@
 .flexColumn {
   display: flex;
   flex-direction: column;
-  flex-grow: 1;
   padding: 15px;
 }
+
+.flexColumn > * {
+  margin: auto auto auto 0;
+}
 .calendarWrapper {
-  margin: auto;
+  margin: auto 0 auto 0;
 }
 .booking {
   margin: 10px 5px;

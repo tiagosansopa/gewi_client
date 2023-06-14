@@ -16,12 +16,13 @@ import {
 import Link from "next/link";
 
 const Layout = ({ children }) => {
-  const { setUser, isDarkMode, handleToggle } = useContext(AuthContext);
-  const router = useRouter();
+  const { setUser, isDarkMode, handleToggle, setAmenity } =
+    useContext(AuthContext);
   const user = children.props.user;
-  setUser(user);
+  const router = useRouter();
 
   useEffect(() => {
+    setUser(user);
     console.log("layout rendered");
   }, []);
 
@@ -58,7 +59,10 @@ const Layout = ({ children }) => {
           <img
             className={layoutStyles.logo}
             src={"/images/logos/gewi_txt.png"}
-            onClick={() => handleIconClick("/")}
+            onClick={() => {
+              setAmenity({});
+              handleIconClick("/");
+            }}
           />
         </div>
       </header>
@@ -96,7 +100,10 @@ const Layout = ({ children }) => {
               </div>
               <div
                 className={layoutStyles.iconContainer}
-                onClick={() => handleIconClick("/amenity")}
+                onClick={() => {
+                  setAmenity({});
+                  handleIconClick("/amenity");
+                }}
               >
                 <FontAwesomeIcon
                   icon={faCouch}
