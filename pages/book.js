@@ -46,8 +46,10 @@ const Book = () => {
   }, []);
 
   useEffect(() => {
-    getMonthBookings(new Date());
-    getDayBookings(new Date());
+    if (amenity.id) {
+      getMonthBookings(new Date());
+      getDayBookings(new Date());
+    }
   }, [amenity.id]);
 
   const fillHours = (eventsArray) => {
@@ -104,6 +106,7 @@ const Book = () => {
 
   const excludeDays = (e) => {
     const currentDate = new Date(e); // Current date
+    console.log("la amenidad es ", amenity);
     const weekdaysNumbers = amenity.weekdays; // Monday (0 = Sunday, 1 = Monday, ...)
     const currentMonthStart = startOfMonth(currentDate);
     const nextMonthStart = addMonths(currentMonthStart, 1);
@@ -189,6 +192,9 @@ const Book = () => {
   }
   const OnChangeDate = (e) => {
     setSelectedDate(e);
+    setEndHours([]);
+    setstartHour(""); // Reset startHour state to empty
+    setendHour(""); // Reset endHour state to empty
     getDayBookings(e);
   };
 
@@ -208,36 +214,37 @@ const Book = () => {
 
   const setUpInitDate = (e) => {
     const [hour, minute] = e.split(":");
-    console.log(hour);
-    selectedDate.setHours(hour);
-    selectedDate.setMinutes(minute);
-    const utcDateString = convertToLocalDate(selectedDate, localTimezone);
+    const updatedDate = new Date(selectedDate);
+    updatedDate.setHours(hour);
+    updatedDate.setMinutes(minute);
+    const utcDateString = convertToLocalDate(updatedDate, localTimezone);
     const convertedDateString = convertToUTCDate(utcDateString, localTimezone);
     setstartHour(utcDateString);
   };
 
   const setUpEndDate = (e) => {
     const [hour, minute] = e.split(":");
-    console.log(hour);
-    selectedDate.setHours(hour);
-    selectedDate.setMinutes(minute);
-    const utcDateString = convertToLocalDate(selectedDate, localTimezone);
+    const updatedDate = new Date(selectedDate);
+    updatedDate.setHours(hour);
+    updatedDate.setMinutes(minute);
+    const utcDateString = convertToLocalDate(updatedDate, localTimezone);
     const convertedDateString = convertToUTCDate(utcDateString, localTimezone);
     setendHour(utcDateString);
   };
 
   function getPossibleFinishHours(e) {
-    const [hour, minute] = e.split(":");
+    const hour = parseInt(e.split(":")[0]);
     const startDaysArray = reservas
       .map((event) => new Date(event.start).getHours())
       .sort((a, b) => a - b);
-    startDaysArray.push(19);
+    startDaysArray.push(
+      parse(amenity.schedule.close, "H:mm", new Date()).getHours()
+    );
     const limit = startDaysArray.find((value) => value >= hour);
-    console.log("el limite es", limit);
-    const finishHours = [];
 
-    console.log(parse(amenity.schedule.close, "H:mm", new Date()));
-    for (let i = hour; i <= limit; i++) {
+    console.log("el limite es", hour, limit);
+    const finishHours = [];
+    for (let i = hour + 1; i <= limit; i++) {
       finishHours.push(i);
     }
 
@@ -336,7 +343,11 @@ const Book = () => {
                     setUpInitDate(e.target.value);
                     getPossibleFinishHours(e.target.value);
                   }}
+                  value={startHour}
                 >
+                  {startHour === "" && (
+                    <option value="">Select a start hour</option>
+                  )}
                   {hours.map((hour) => (
                     <option key={hour} value={hour}>
                       {hour}
@@ -348,7 +359,11 @@ const Book = () => {
                   onChange={(e) => {
                     setUpEndDate(e.target.value);
                   }}
+                  value={endHour}
                 >
+                  {endHour === "" && (
+                    <option value="">Select a end hour</option>
+                  )}
                   {endHours.map((hour) => (
                     <option key={hour} value={hour}>
                       {hour}
