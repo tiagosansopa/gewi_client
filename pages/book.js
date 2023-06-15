@@ -5,6 +5,7 @@ import { amenityStyles } from "../styles";
 import { useRouter } from "next/router";
 import axios from "axios";
 import DatePicker from "react-datepicker";
+import moment from "moment-timezone";
 import {
   startOfMonth,
   endOfMonth,
@@ -30,12 +31,17 @@ const Book = () => {
   const [reservas, setReservas] = useState([]);
   const [excluded, setExcluded] = useState([]);
   const [books, setBooks] = useState([]);
-  const [selectedDate, setSelectedDate] = useState();
+  const [selectedDate, setSelectedDate] = useState(new Date());
   const [highlightWithRanges, sethighlightWithRanges] = useState([]);
   const [hours, setHours] = useState([]);
+  const [endHours, setEndHours] = useState([]);
+  const [startHour, setstartHour] = useState("");
+  const [endHour, setendHour] = useState("");
   const [eventName, setEventName] = useState("");
+  const [localTimezone, setLocalTimezone] = useState("");
 
   useEffect(() => {
+    setLocalTimezone(Intl.DateTimeFormat().resolvedOptions().timeZone);
     readLocalStorage();
   }, []);
 
@@ -44,15 +50,9 @@ const Book = () => {
     getDayBookings(new Date());
   }, [amenity.id]);
 
-  const OnChangeDate = (e) => {
-    setSelectedDate(e);
-    getDayBookings(e);
-  };
-
   const fillHours = (eventsArray) => {
     const openTime = parse(amenity.schedule.open, "H:mm", new Date());
     const closeTime = parse(amenity.schedule.close, "H:mm", new Date());
-
     const hoursArray = [];
     let currentTime = openTime;
 
@@ -64,7 +64,7 @@ const Book = () => {
 
     const filteredHoursArray = hoursArray.filter((hour) => {
       const hourTime = parse(hour, "H:mm", new Date());
-      console.log("hour time", hourTime);
+      //console.log("hour time", hourTime);
       // Check if the hour falls outside the start and finish times of any event
       return !eventsArray.some((event) => {
         const eventStartTime = parse(
@@ -72,19 +72,33 @@ const Book = () => {
           "H:mm",
           new Date()
         );
-        console.log("start time", eventStartTime);
+        //console.log("start time", eventStartTime);
         const eventFinishTime = parse(
           format(new Date(event.finish), "H:mm"),
           "H:mm",
           new Date()
         );
-        console.log("end time", eventFinishTime);
+        //console.log("end time", eventFinishTime);
 
-        //console.log("start: ", eventStartTime, " finish: ", eventFinishTime);
+        // console.log(
+        //   "hour validating: ",
+        //   hourTime,
+        //   "start: ",
+        //   eventStartTime,
+        //   " finish: ",
+        //   eventFinishTime
+        // );
         return hourTime >= eventStartTime && hourTime <= eventFinishTime;
       });
     });
-    console.log("Horas disponibles", filteredHoursArray);
+    console.log("no ordern ", filteredHoursArray);
+    filteredHoursArray.sort((a, b) => {
+      const timeA = parse(a, "H:mm", new Date());
+      const timeB = parse(b, "H:mm", new Date());
+      return timeA.getTime() - timeB.getTime();
+    });
+    console.log("ordern ", filteredHoursArray);
+    //console.log("Horas disponibles", filteredHoursArray);
     setHours(filteredHoursArray);
   };
 
@@ -112,30 +126,6 @@ const Book = () => {
     setExcluded(nextWeekdays); // Array of Date objects representing all next Mondays within the current month
   };
 
-  const getTimezoneString = (dateString) => {
-    const localTimezoneOffset = new Date().getTimezoneOffset(); // Get local time zone offset in minutes
-
-    const offsetHours = Math.abs(Math.floor(localTimezoneOffset / 60)); // Calculate offset hours
-    const offsetMinutes = Math.abs(localTimezoneOffset % 60); // Calculate offset minutes
-
-    const offsetSign = localTimezoneOffset >= 0 ? "-" : "+"; // Determine the offset sign
-
-    const offsetString = `${offsetSign}${offsetHours
-      .toString()
-      .padStart(2, "0")}:${offsetMinutes.toString().padStart(2, "0")}`; // Format the offset string
-
-    const dateStringWithOffset = dateString + offsetString; // Concatenate the offset to the date string
-
-    const date = new Date(dateStringWithOffset);
-
-    return date;
-  };
-  const handleTimeChange = (event) => {
-    const { value } = event.target;
-    const [hour, minutes] = value.split(":"); // Extract the hour and minutes from the input value
-    setTime({ hour, minutes });
-  };
-
   const handleEventName = (e) => setEventName(e.target.value);
 
   const getMonthBookings = async (e) => {
@@ -150,7 +140,7 @@ const Book = () => {
       );
       setBooks(response.data.bookings);
       sethighlightWithRanges(response.data.bookings);
-      console.log("month bookings", response.data.bookings);
+      //console.log("month bookings", response.data.bookings);
     } catch (error) {
       console.log("Error getting month bookings");
     }
@@ -165,40 +155,106 @@ const Book = () => {
         }
       );
       const eventsArray = response.data.bookings;
-      fillHours(eventsArray);
-      setReservas(response.data.bookings);
+      //console.log("eventos del dia ", eventsArray);
+      //console.log("eventos del dia local ", );
+      const horalocal = localHourEvent(eventsArray);
+      fillHours(horalocal);
+      setReservas(horalocal);
     } catch (error) {
       console.log("Error getting day bookings");
       console.log(error);
     }
   };
 
-  const bookAmenity = async (e) => {
-    const dateFormat = new Date(selectedDate).toISOString().split("T")[0];
-    const timeFormat = `${time.hour}:${time.minutes}`;
-    const format = dateFormat + "T" + timeFormat + ":00.000";
-    const finalDate = getTimezoneString(format);
+  const bookAmenity = async () => {
+    const send = buildBook();
     try {
       const response = await axios.post(
         `${process.env.NEXT_PUBLIC_API_NAME}/book`,
-        {
-          eventName: eventName,
-          start: finalDate,
-          finish: finalDate,
-          amenity: amenity.id,
-        }
+        send
       );
+      setEventName("");
       window.alert(response.data.message);
     } catch (error) {
       console.log("Error getting day bookings");
     }
   };
 
-  function subDays(date, days) {
-    const newDate = new Date(date);
-    newDate.setDate(newDate.getDate() - days);
-    return newDate;
+  function convertToLocalDate(dateString, timezone) {
+    return moment.tz(dateString, timezone).utc().format();
   }
+
+  function convertToUTCDate(dateString, timezone) {
+    return moment.tz(dateString, "UTC").tz(timezone).format();
+  }
+  const OnChangeDate = (e) => {
+    setSelectedDate(e);
+    getDayBookings(e);
+  };
+
+  const localHourEvent = (e) => {
+    return e.map((event) => {
+      const updatedEvent = { ...event };
+
+      // Convert start date to local timezone
+      updatedEvent.start = moment(event.start).tz(localTimezone).toDate();
+
+      // Convert finish date to local timezone
+      updatedEvent.finish = moment(event.finish).tz(localTimezone).toDate();
+
+      return updatedEvent;
+    });
+  };
+
+  const setUpInitDate = (e) => {
+    const [hour, minute] = e.split(":");
+    console.log(hour);
+    selectedDate.setHours(hour);
+    selectedDate.setMinutes(minute);
+    const utcDateString = convertToLocalDate(selectedDate, localTimezone);
+    const convertedDateString = convertToUTCDate(utcDateString, localTimezone);
+    setstartHour(utcDateString);
+  };
+
+  const setUpEndDate = (e) => {
+    const [hour, minute] = e.split(":");
+    console.log(hour);
+    selectedDate.setHours(hour);
+    selectedDate.setMinutes(minute);
+    const utcDateString = convertToLocalDate(selectedDate, localTimezone);
+    const convertedDateString = convertToUTCDate(utcDateString, localTimezone);
+    setendHour(utcDateString);
+  };
+
+  function getPossibleFinishHours(e) {
+    const [hour, minute] = e.split(":");
+    const startDaysArray = reservas
+      .map((event) => new Date(event.start).getHours())
+      .sort((a, b) => a - b);
+    startDaysArray.push(19);
+    const limit = startDaysArray.find((value) => value >= hour);
+    console.log("el limite es", limit);
+    const finishHours = [];
+
+    console.log(parse(amenity.schedule.close, "H:mm", new Date()));
+    for (let i = hour; i <= limit; i++) {
+      finishHours.push(i);
+    }
+
+    console.log("end hours ", finishHours);
+    setEndHours(finishHours);
+  }
+
+  const buildBook = () => {
+    const book = {
+      eventName: eventName,
+      start: startHour,
+      finish: endHour,
+      amenity: amenity._id,
+    };
+    console.table(book);
+    return book;
+  };
 
   return (
     <>
@@ -275,21 +331,30 @@ const Book = () => {
               </div>
               <div className={amenityStyles.flexColumn}>
                 <label htmlFor="hora">Inicio</label>
-                <select>
-                  {hours.sort().map((hour) => (
+                <select
+                  onChange={(e) => {
+                    setUpInitDate(e.target.value);
+                    getPossibleFinishHours(e.target.value);
+                  }}
+                >
+                  {hours.map((hour) => (
                     <option key={hour} value={hour}>
                       {hour}
                     </option>
                   ))}
                 </select>
-                <label htmlFor="hora">Fin</label>
-                <input
-                  type="time"
-                  // value={`${startTime.hour}:${startTime.minutes}`}
-                  // onChange={handleTimeChange}
-                  id="hora"
-                  name="hora"
-                />
+                <label htmlFor="horaFin">Fin</label>
+                <select
+                  onChange={(e) => {
+                    setUpEndDate(e.target.value);
+                  }}
+                >
+                  {endHours.map((hour) => (
+                    <option key={hour} value={hour}>
+                      {hour}
+                    </option>
+                  ))}
+                </select>
 
                 <label htmlFor="nombre">Nombre de evento</label>
                 <input
@@ -298,8 +363,7 @@ const Book = () => {
                   onChange={handleEventName}
                   value={eventName}
                 ></input>
-                <button>Agendar</button>
-                {/* <button onClick={bookAmenity}>Agendar</button> */}
+                <button onClick={bookAmenity}>Agendar</button>
               </div>
             </div>
           </>
