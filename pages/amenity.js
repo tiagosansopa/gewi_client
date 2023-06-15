@@ -12,6 +12,7 @@ import {
   faSpaghettiMonsterFlying,
   faBirthdayCake,
   faPersonBreastfeeding,
+  faPeopleGroup,
 } from "@fortawesome/free-solid-svg-icons";
 
 const Amenity = () => {
@@ -35,9 +36,6 @@ const Amenity = () => {
   }, []);
 
   useEffect(() => {
-    // Read the state value here
-    console.log("Name:", amenity, !amenity.id);
-
     // Check if the name is empty, and if so, perform an action (e.g., fetch data, display a message)
     if (amenity.id) {
       handleContextChange();
@@ -74,16 +72,15 @@ const Amenity = () => {
               <div key={item.id} className={amenityStyles.photoscontainer}>
                 <h3>{item.name}</h3>
                 <img src={item.img} className={amenityStyles.imgShadow} />
-                <p>Capacidad max: {item.capacity} personas</p>
-
                 <p>
-                  Open from: {item.schedule.open} to: {item.schedule.close}
-                </p>
-                <p>
-                  On:
                   {item.weekdays.map((day) => {
                     return <span> {day}, </span>;
                   })}
+                  {item.schedule.open} - {item.schedule.close}
+                  <span>
+                    <FontAwesomeIcon icon={faPeopleGroup} />
+                  </span>
+                  {item.capacity}
                 </p>
               </div>
             </div>
