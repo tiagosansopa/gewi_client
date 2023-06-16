@@ -27,7 +27,7 @@ const profile = () => {
     // Handle contact click
   };
 
-  const handleGiveAccess = () => {
+  const handleChangePassword = () => {
     console.log("implement");
   };
 
@@ -97,7 +97,7 @@ const profile = () => {
             </div>
           </div>
         </div>
-        <button className={profileStyles.change} onClick={handleGiveAccess}>
+        <button className={profileStyles.change} onClick={handleChangePassword}>
           Change Password
         </button>
         <GoogleLogin
