@@ -38,7 +38,6 @@
 }
 
 .bellWrap {
-  position: absolute;
   display: flex;
   width: var(--top-navbar-height);
   height: var(--top-navbar-height);
@@ -61,9 +60,15 @@
 
 .profile {
   display: flex;
-  flex-direction: column;
+  width: var(--top-navbar-height);
+  height: var(--top-navbar-height);
+}
+.profileRight {
+  margin: auto auto auto auto;
+  display: flex;
   align-items: center;
-  margin: auto 5px auto auto;
+  cursor: pointer;
+  color: #f1f1f1;
 }
 
 .profilePicture {

@@ -52,9 +52,6 @@ const Amenity = () => {
   return (
     <div className={amenityStyles.container}>
       <div className={amenityStyles.messageHeader}>
-        <div className={amenityStyles.leftArrow}>
-          <FontAwesomeIcon icon={faArrowLeft} onClick={() => router.back()} />
-        </div>
         <div className={amenityStyles.header}>
           <h1>Amenidades</h1>
         </div>

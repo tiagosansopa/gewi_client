@@ -12,6 +12,7 @@ import {
   faWallet,
   faHome,
   faCouch,
+  faArrowLeft,
 } from "@fortawesome/free-solid-svg-icons";
 import Link from "next/link";
 
@@ -44,13 +45,13 @@ const Layout = ({ children }) => {
         <div className={layoutStyles.upperNavbar}>
           {user && (
             <div className={layoutStyles.bellWrap}>
-              <div
-                className={layoutStyles.bell}
-                onClick={() => router.push("/notifications")}
-              >
+              <div className={layoutStyles.bell}>
                 <FontAwesomeIcon
-                  icon={faBell}
-                  className={layoutStyles.profileIcon}
+                  icon={faArrowLeft}
+                  onClick={() => {
+                    router.back();
+                    setAmenity({});
+                  }}
                 />
               </div>
             </div>
@@ -64,6 +65,20 @@ const Layout = ({ children }) => {
               handleIconClick("/");
             }}
           />
+
+          {user && (
+            <div className={layoutStyles.profile}>
+              <div
+                className={layoutStyles.profileRight}
+                onClick={() => router.push("/notifications")}
+              >
+                <FontAwesomeIcon
+                  icon={faBell}
+                  className={layoutStyles.profileIcon}
+                />
+              </div>
+            </div>
+          )}
         </div>
       </header>
       <main className={layoutStyles.content}>{children}</main>
