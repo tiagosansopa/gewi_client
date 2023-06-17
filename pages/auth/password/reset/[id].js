@@ -42,7 +42,7 @@ const ResetPassword = () => {
     try {
       const response = await axios.put(
         `${process.env.NEXT_PUBLIC_API_NAME}/reset-password`,
-        { token }
+        { resetPasswordLink: token, newPassword }
       );
       setState({
         ...state,
@@ -61,7 +61,12 @@ const ResetPassword = () => {
   };
 
   return (
-    <div>
+    <div className={loginStyles.container}>
+      <img
+        className={loginStyles.imgLogo}
+        src="/images/logos/logo512.png"
+        alt="Gewi Logo"
+      />
       <form className={loginStyles.form} onSubmit={handleResetPassword}>
         <h1>Ready to reset your password {name} ? </h1>
         <h2>{success && success}</h2>
@@ -74,7 +79,7 @@ const ResetPassword = () => {
           type="password"
           id="newPassword"
           value={newPassword}
-          onChange={handleChange("password")}
+          onChange={handleChange("newPassword")}
         />
         <button className={loginStyles.button} type="submit">
           {buttonText}
