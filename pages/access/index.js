@@ -45,7 +45,6 @@ const Access = () => {
 
   return (
     <div className={accessStyles.container}>
-      <h2 className={accessStyles.title}>Mis Accessos</h2>
       <div className={accessStyles.amenities}>
         <div className={accessStyles.photos}>
           {vigentes.map((item) => {

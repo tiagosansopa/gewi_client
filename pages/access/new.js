@@ -44,6 +44,17 @@ const NewAccess = () => {
           />
         </div>
         <div className={accessStyles.formGroup}>
+          <label htmlFor="nombre" className={accessStyles.label}>
+            Apellido
+          </label>
+          <input
+            type="text"
+            id="nombre"
+            name="nombre"
+            className={accessStyles.input}
+          />
+        </div>
+        <div className={accessStyles.formGroup}>
           <label htmlFor="telefono" className={accessStyles.label}>
             Teléfono
           </label>
@@ -56,7 +67,7 @@ const NewAccess = () => {
         </div>
         <div className={accessStyles.formGroup}>
           <label htmlFor="vivienda" className={accessStyles.label}>
-            Vivienda
+            Propiedad
           </label>
           <select id="vivienda" name="vivienda" className={accessStyles.input}>
             {viviendaOptions.map((option) => (
