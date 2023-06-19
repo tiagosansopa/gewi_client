@@ -58,7 +58,7 @@ const Layout = ({ children }) => {
 
           <img
             className={layoutStyles.logo}
-            src={"/images/logos/gewi_txt.png"}
+            src={"/images/logos/gewi-lp.png"}
             onClick={() => {
               setAmenity({});
               handleIconClick("/");

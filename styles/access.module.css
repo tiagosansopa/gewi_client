@@ -1,10 +1,5 @@
 .container {
   background-color: #ffffff26;
-  padding: 20px;
-  border-radius: 5px;
-  width: 95%;
-  margin: 0 auto;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
   position: relative;
   overflow: hidden;
   display: flex;
@@ -107,18 +102,18 @@
   overflow: hidden;
 }
 
-/* Custom scrollbar styles */
-.listContainer::-webkit-scrollbar {
-  width: 10px; /* Adjust the width as needed */
+/* Custom scrollbar styles
+.listContainer::-webkit-scrollbar:horizontal {
+  width: 10px; 
 }
 
 .listContainer::-webkit-scrollbar-track {
-  background: #f1f1f1; /* Adjust the background color as needed */
+  background: #f1f1f1; 
 }
 
 .listContainer::-webkit-scrollbar-thumb {
-  background: #888; /* Adjust the thumb color as needed */
-}
+  background: #888; 
+} */
 
 .listItem {
   display: flex;
@@ -300,4 +295,15 @@
   text-align: left;
   font-size: 20px;
   color: white;
+}
+
+.toggle {
+  border: none;
+  background-color: #000000;
+  color: #ffffff;
+}
+
+.selected {
+  background-color: #000000;
+  color: #ffffff;
 }
