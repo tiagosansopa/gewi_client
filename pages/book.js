@@ -265,17 +265,6 @@ const Book = () => {
 
   return (
     <>
-      <div className={amenityStyles.messageHeader}>
-        <div className={amenityStyles.leftArrow}>
-          <FontAwesomeIcon
-            icon={faArrowLeft}
-            onClick={() => {
-              setAmenity({});
-              router.back();
-            }}
-          />
-        </div>
-      </div>
       <div className={amenityStyles.container}>
         {amenity.id !== undefined ? (
           <>
