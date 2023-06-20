@@ -45,6 +45,7 @@ const Access = () => {
 
   return (
     <div className={accessStyles.container}>
+      <h2 className={accessStyles.title}>Otorgados</h2>
       <div className={accessStyles.amenities}>
         <div className={accessStyles.photos}>
           {vigentes.map((item) => {
@@ -81,16 +82,20 @@ const Access = () => {
           })}
         </div>
       </div>
-      <h2 className={accessStyles.title}>Otorgados</h2>
+      <h2 className={accessStyles.title}>Solicitados</h2>
       <div className={accessStyles.listContainer}>
         <ul className={accessStyles.list}>
           {solicitadosData.map((item, index) => (
             <li key={index} className={accessStyles.listItem}>
-              <img className={accessStyles.thumbnail} src={item.thumbnail} />
               <div className={accessStyles.details}>
-                <h3 className={accessStyles.place}>{item.user}</h3>
+                <img className={accessStyles.thumbnail} src={item.thumbnail} />
+              </div>
+              <div className={accessStyles.details}>
+                <p className={accessStyles.place}>{item.user}</p>
                 <p className={accessStyles.dateTime}>{item.place}</p>
                 <p className={accessStyles.dateTime}>{item.dateTime}</p>
+              </div>
+              <div className={accessStyles.details}>
                 {item.type === "personal" && (
                   <FontAwesomeIcon icon={faPersonRunning} />
                 )}
@@ -103,11 +108,9 @@ const Access = () => {
           ))}
         </ul>
       </div>
-      <div className={accessStyles.buttonsContainer}>
-        <button className={accessStyles.button} onClick={handleNuevoClick}>
-          <FontAwesomeIcon icon={faPlus} />
-        </button>
-      </div>
+      <button className={accessStyles.button} onClick={handleNuevoClick}>
+        <FontAwesomeIcon icon={faPlus} />
+      </button>
     </div>
   );
 };

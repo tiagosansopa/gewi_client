@@ -3,6 +3,8 @@ import { withAuth } from "../../components/withAuth";
 import AuthContext from "../../context/AuthContext";
 import { chatStyles } from "../../styles";
 import { useRouter } from "next/router";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faPlus } from "@fortawesome/free-solid-svg-icons";
 import axios from "axios";
 import { contacts } from "../../dummy";
 const Messages = ({ user }) => {
@@ -114,8 +116,8 @@ const Messages = ({ user }) => {
           );
         })}
       </ul>
-      <button className={chatStyles.change} onClick={handleNewMessage}>
-        Nuevo Mensaje
+      <button className={chatStyles.button} onClick={handleNewMessage}>
+        <FontAwesomeIcon icon={faPlus} />
       </button>
     </div>
   );

@@ -1,10 +1,6 @@
 .container {
   background-color: #ffffff26;
-  padding: 20px;
   border-radius: 5px;
-  width: 95%;
-  margin: 0 auto;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
   position: relative;
   overflow: hidden;
   display: flex;
@@ -139,14 +135,31 @@
 /* Reset default list styles */
 .messagePreviewList {
   padding: 0;
-  max-width: 80%;
-  width: 90%;
   display: flex;
   align-items: center;
   flex-direction: column;
   list-style-type: none;
-  margin: auto;
+  margin: 0;
   flex-grow: 1;
+}
+.button {
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+  position: absolute;
+  right: 10px;
+  bottom: 20px;
+  margin: auto 0 auto auto;
+  width: 60px;
+  height: 60px;
+  border-style: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #ffffff;
+  border-radius: 100%;
+  color: #000000;
+  font-size: 25px;
+  margin-bottom: 10px;
+  cursor: pointer;
 }
 
 .messagePreview {

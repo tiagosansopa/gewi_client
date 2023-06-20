@@ -97,7 +97,10 @@ const Layout = ({ children }) => {
               </div>
               <div
                 className={layoutStyles.iconContainer}
-                onClick={() => handleIconClick("/statement")}
+                onClick={() => {
+                  setAmenity({});
+                  handleIconClick("/statement");
+                }}
               >
                 <FontAwesomeIcon
                   icon={faWallet}
@@ -106,7 +109,10 @@ const Layout = ({ children }) => {
               </div>
               <div
                 className={layoutStyles.iconContainer}
-                onClick={() => handleIconClick("/")}
+                onClick={() => {
+                  setAmenity({});
+                  handleIconClick("/");
+                }}
               >
                 <FontAwesomeIcon
                   icon={faHome}
@@ -127,7 +133,10 @@ const Layout = ({ children }) => {
               </div>
               <div
                 className={layoutStyles.iconContainer}
-                onClick={() => handleIconClick("/profile")}
+                onClick={() => {
+                  setAmenity({});
+                  handleIconClick("/profile");
+                }}
               >
                 <img
                   className={layoutStyles.profilePicture}

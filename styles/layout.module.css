@@ -52,7 +52,7 @@
 }
 
 .logo {
-  height: 40px;
+  height: 30px;
   width: auto;
   margin: auto;
   cursor: pointer;
@@ -162,10 +162,6 @@
 
 /* Media queries for small mobile devices */
 @media (max-width: 359px) {
-  .content {
-    margin: 5px;
-  }
-
   .upperNavbar {
     max-width: 800px;
     margin: auto;
@@ -179,9 +175,6 @@
 
 /* Media queries for medium-sized mobile devices */
 @media (min-width: 360px) and (max-width: 479px) {
-  .content {
-    margin: 10px;
-  }
   .upperNavbar {
     max-width: 800px;
     margin: auto;
@@ -194,9 +187,6 @@
 
 /* Media queries for large mobile devices */
 @media (min-width: 480px) and (max-width: 767px) {
-  .content {
-    margin: 10px 20px;
-  }
   .upperNavbar {
     max-width: 800px;
     margin: auto;
@@ -209,9 +199,6 @@
 
 /* Media queries for tablets */
 @media (min-width: 768px) and (max-width: 1023px) {
-  .content {
-    margin: 10px 20px;
-  }
   .upperNavbar {
     max-width: 800px;
     margin: auto;
@@ -224,9 +211,6 @@
 
 /* Media queries for small desktop screens */
 @media (min-width: 1024px) and (max-width: 1199px) {
-  .content {
-    margin: 10px 40px;
-  }
   .upperNavbar {
     max-width: 800px;
     margin: auto;
@@ -239,9 +223,6 @@
 
 /* Media queries for medium to large desktop screens */
 @media (min-width: 1200px) and (max-width: 1439px) {
-  .content {
-    margin: 10px 60px;
-  }
   .upperNavbar {
     max-width: 800px;
     margin: auto;
@@ -254,9 +235,6 @@
 
 /* Media queries for larger desktop screens */
 @media (min-width: 1440px) {
-  .content {
-    margin: 10px 80px;
-  }
   .upperNavbar {
     max-width: 800px;
     margin: auto;

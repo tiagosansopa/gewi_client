@@ -53,6 +53,7 @@
 }
 
 .title {
+  margin: 1px auto 1px 2px;
   font-size: 24px;
 }
 
@@ -64,6 +65,10 @@
 }
 
 .button {
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+  position: absolute;
+  right: 10px;
+  bottom: 20px;
   margin: auto 0 auto auto;
   width: 60px;
   height: 60px;
@@ -84,7 +89,6 @@
 }
 
 .listContainer {
-  padding: 0 20px;
   max-height: 800px;
   overflow: scroll;
 }
@@ -119,9 +123,11 @@
   display: flex;
   align-items: center;
   border-bottom: 1px solid #ccc;
-  padding: 10px 10px;
   background-color: #ffffff;
   color: #000000;
+}
+.listItem > * {
+  margin: auto;
 }
 
 .thumbnail {
@@ -132,13 +138,9 @@
   margin-right: 10px;
 }
 
-.details {
-  flex: 1;
-}
-
 .place {
   font-size: 16px;
-  margin-bottom: 5px;
+  margin: 0;
 }
 
 .dateTime,
@@ -213,7 +215,6 @@
 }
 
 .photos {
-  max-width: 90%;
   display: flex;
   flex-wrap: nowrap;
   flex-direction: row;
@@ -235,7 +236,6 @@
 .photoscontainer {
   border-radius: 9px;
   padding: 5px 10px;
-  width: 150px;
   height: auto;
   display: flex;
   flex-direction: column;
@@ -287,7 +287,6 @@
 
 .amenities {
   width: 100%;
-  margin: 20px 0px;
   color: white;
 }
 .amenities > h1 {
