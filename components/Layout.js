@@ -143,10 +143,6 @@ const Layout = ({ children }) => {
                   src={user.img}
                   alt="Profile Picture"
                 />
-                {/* <FontAwesomeIcon
-                  icon={faUser}
-                  className={layoutStyles.profileIcon}
-                /> */}
               </div>
             </>
           )}
