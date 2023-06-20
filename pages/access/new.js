@@ -1,11 +1,14 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import DatePicker from "react-datepicker";
 import QRCode from "qrcode.react";
+import axios from "axios";
 import "react-datepicker/dist/react-datepicker.css";
 import { withAuth } from "../../components/withAuth";
 import { viviendaOptions, months, type } from "../../dummy";
+import AuthContext from "../../context/AuthContext";
 import { useRouter } from "next/router";
 import { accessStyles } from "../../styles";
+import Contacts from "../../components/Contacts";
 const NewAccess = () => {
   const router = useRouter();
   const [startDate, setStartDate] = useState(new Date());
@@ -13,6 +16,8 @@ const NewAccess = () => {
   const [qrCodeContent, setQRCodeContent] = useState("");
   const [isFormVisible, setIsFormVisible] = useState(false);
   const [enviar, setEnviar] = useState(false);
+
+  const { user } = useContext(AuthContext);
 
   const toggleForm = () => {
     setIsFormVisible(!isFormVisible);
@@ -22,6 +27,34 @@ const NewAccess = () => {
     setStartDate(start);
     setEndDate(end);
   };
+
+  const saveContact = async (newContact) => {
+    try {
+      const response = await axios.post(
+        `${process.env.NEXT_PUBLIC_API_NAME}/contact`,
+        newContact
+      );
+      console.log("Se guardo el contacto", response.data);
+    } catch (error) {
+      console.log("Error saving contact");
+    }
+  };
+
+  const handleNewContact = (e) => {
+    e.preventDefault();
+    const formData = new FormData(e.target);
+    const nombre = formData.get("nombre");
+    const apellido = formData.get("apellido");
+    const telefono = formData.get("telefono");
+    const newContact = {
+      name: nombre,
+      lastName: apellido,
+      phone: telefono,
+      id: user._id,
+    };
+    saveContact(newContact);
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
     const formData = new FormData(e.target);
@@ -35,18 +68,27 @@ const NewAccess = () => {
   return (
     <div className={accessStyles.containerNew}>
       <h1>New Access</h1>
-
       <div className={accessStyles.sliderButton}>
-        <button className={accessStyles.toggle} onClick={toggleForm}>
+        <button
+          className={`${accessStyles.toggle} ${
+            !isFormVisible ? accessStyles.selected : ""
+          } `}
+          onClick={toggleForm}
+        >
           Existente
         </button>
-        <button className={accessStyles.toggle} onClick={toggleForm}>
+        <button
+          className={`${accessStyles.toggle} ${
+            isFormVisible ? accessStyles.selected : ""
+          } `}
+          onClick={toggleForm}
+        >
           Nuevo
         </button>
       </div>
 
       {isFormVisible ? (
-        <form onSubmit={handleSubmit} className={accessStyles.form}>
+        <form onSubmit={handleNewContact} className={accessStyles.form}>
           <div className={accessStyles.formGroup}>
             <label htmlFor="nombre" className={accessStyles.label}>
               Nombre
@@ -59,13 +101,13 @@ const NewAccess = () => {
             />
           </div>
           <div className={accessStyles.formGroup}>
-            <label htmlFor="nombre" className={accessStyles.label}>
+            <label htmlFor="apellido" className={accessStyles.label}>
               Apellido
             </label>
             <input
               type="text"
-              id="nombre"
-              name="nombre"
+              id="apellido"
+              name="apellido"
               className={accessStyles.input}
             />
           </div>
@@ -80,13 +122,12 @@ const NewAccess = () => {
               className={accessStyles.input}
             />
           </div>
+          <button type="submit" className={accessStyles.submitButton}>
+            Crear
+          </button>
         </form>
       ) : (
-        <ul className={accessStyles.list}>
-          <li>Item 1</li>
-          <li>Item 2</li>
-          <li>Item 3</li>
-        </ul>
+        <Contacts />
       )}
 
       {enviar && (

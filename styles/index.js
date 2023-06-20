@@ -10,7 +10,7 @@ import regStyles from "./register.module.css";
 import amenityStyles from "./amenity.module.css";
 import chatStyles from "./chat.module.css";
 import notificationsStyles from "./notifications.module.css";
-
+import contactsStyles from "./contacts.module.css";
 export {
   indexStyles,
   loginStyles,
@@ -24,4 +24,5 @@ export {
   amenityStyles,
   chatStyles,
   notificationsStyles,
+  contactsStyles,
 };
