@@ -11,6 +11,7 @@ import amenityStyles from "./amenity.module.css";
 import chatStyles from "./chat.module.css";
 import notificationsStyles from "./notifications.module.css";
 import contactsStyles from "./contacts.module.css";
+import keyStyles from "./key.module.css";
 export {
   indexStyles,
   loginStyles,
@@ -25,4 +26,5 @@ export {
   chatStyles,
   notificationsStyles,
   contactsStyles,
+  keyStyles,
 };

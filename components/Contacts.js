@@ -3,7 +3,7 @@ import { contactsStyles } from "../styles";
 import axios from "axios";
 import AuthContext from "../context/AuthContext";
 
-const Contacts = () => {
+const Contacts = ({ setContact }) => {
   const [contactList, SetContactList] = useState([]);
   const { user } = useContext(AuthContext);
   const getContacts = async () => {
@@ -27,7 +27,13 @@ const Contacts = () => {
       <ul className={contactsStyles.list}>
         {contactList.map((contact, index) => {
           return (
-            <li key={index} className={contactsStyles.item}>
+            <li
+              key={index}
+              className={contactsStyles.item}
+              onClick={() => {
+                setContact(contact);
+              }}
+            >
               {/*<img src={contact.img} alt="user image" />*/}
               <div className={contactsStyles.messageContent}>
                 <span>{contact.name}</span>
