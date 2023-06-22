@@ -6,11 +6,15 @@ import { useRouter } from "next/router";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
 import axios from "axios";
-import { contacts } from "../../dummy";
+
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faPlus } from "@fortawesome/free-solid-svg-icons";
+
 const Messages = ({ user }) => {
   const router = useRouter();
   const [showContactList, setShowContactList] = useState(false);
   const [messages, setMessages] = useState([]);
+  const [contacts, setContacts] = useState([]);
 
   const { setChat } = useContext(AuthContext);
 
@@ -28,17 +32,29 @@ const Messages = ({ user }) => {
     }
   };
 
+  const getContacts = async () => {
+    try {
+      const response = await axios.get(
+        `${process.env.NEXT_PUBLIC_API_NAME}/properties`
+      );
+      setContacts(response.data.properties);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   const handleSelectMessage = (message) => {
     setChat(message.sender);
     router.push("/chat");
   };
 
   const handleNewMessage = () => {
+    getContacts();
     setShowContactList(true);
   };
 
   const handleContactClick = (message) => {
-    setChat(user);
+    //setChat(user);
     router.push("/chat");
   };
 
@@ -48,20 +64,6 @@ const Messages = ({ user }) => {
 
   return (
     <div className={chatStyles.container}>
-      {showContactList && (
-        <ul className={chatStyles.contactList}>
-          {contacts.map((contact) => (
-            <li
-              key={contact.id}
-              className={chatStyles.contact}
-              onClick={() => handleContactClick(contact)}
-            >
-              {contact.name}
-            </li>
-          ))}
-        </ul>
-      )}
-
       <ul className={chatStyles.messagePreviewList}>
         {messages.map((message) => {
           const specificDate = new Date(message.createdAt);
