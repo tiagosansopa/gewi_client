@@ -20,6 +20,10 @@ const profile = () => {
     console.log("hola");
   };
 
+  const handleChangePassword = () => {
+    router.push("/auth/password/forgot");
+  };
+
   const handleGiveAccess = () => {
     console.log("implement");
   };
@@ -60,7 +64,7 @@ const profile = () => {
       </div>
 
       <div className={profileStyles.containers}>
-        <button className={profileStyles.change} onClick={handleGiveAccess}>
+        <button className={profileStyles.change} onClick={handleChangePassword}>
           Change Password
         </button>
         <button className={profileStyles.change} onClick={handleGiveAccess}>
