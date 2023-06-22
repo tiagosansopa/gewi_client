@@ -13,7 +13,6 @@ import {
   faHome,
   faCouch,
   faArrowLeft,
-  faQrcode,
 } from "@fortawesome/free-solid-svg-icons";
 import Link from "next/link";
 
@@ -69,16 +68,13 @@ const Layout = ({ children }) => {
 
           {user && (
             <div className={layoutStyles.profile}>
-              <div className={layoutStyles.profileRight}>
-                <FontAwesomeIcon
-                  icon={faQrcode}
-                  className={layoutStyles.profileIcon}
-                  onClick={() => router.push("/key")}
-                />
+              <div
+                className={layoutStyles.profileRight}
+                onClick={() => router.push("/notifications")}
+              >
                 <FontAwesomeIcon
                   icon={faBell}
                   className={layoutStyles.profileIcon}
-                  onClick={() => router.push("/notifications")}
                 />
               </div>
             </div>

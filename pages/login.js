@@ -70,8 +70,8 @@ const Login = () => {
     }
   };
 
-  const handleForgot = () => {
-    router.push("/auth/password/forgot");
+  const setUserLoggedIn = (token) => {
+    localStorage.setItem("token", token);
   };
 
   return (
@@ -109,10 +109,8 @@ const Login = () => {
         <button className={loginStyles.button} type="submit">
           {buttonText}
         </button>
-        <p className={loginStyles.forgotLink} onClick={handleForgot}>
-          Forgot password?
-        </p>
       </form>
+      <h6>GEWI 0.1</h6>
     </div>
   );
 };
