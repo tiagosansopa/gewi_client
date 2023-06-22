@@ -110,6 +110,7 @@ const Login = () => {
           {buttonText}
         </button>
       </form>
+      <h6>GEWI 0.1</h6>
     </div>
   );
 };
