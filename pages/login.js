@@ -113,7 +113,7 @@ const Login = () => {
           Forgot password?
         </p>
       </form>
-      <h6>GEWI 0.1</h6>
+      <h6>GEWI 1.0</h6>
     </div>
   );
 };
