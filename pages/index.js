@@ -65,6 +65,7 @@ const Home = ({ user }) => {
                 className={homeStyles.photoscontainerWrap}
                 onClick={() => {
                   handleAmenity(item);
+                  router.push("/book");
                 }}
               >
                 <div key={item.id} className={homeStyles.photoscontainer}>

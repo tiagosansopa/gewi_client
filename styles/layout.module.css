@@ -29,7 +29,7 @@
   display: flex;
   justify-content: space-between;
   padding: 10px;
-  height: 80px;
+  height: var(--top-navbar-height);
   background-color: #000000;
 }
 .upperNavbarWrap {
@@ -38,7 +38,6 @@
 }
 
 .bellWrap {
-  position: absolute;
   display: flex;
   width: var(--top-navbar-height);
   height: var(--top-navbar-height);
@@ -53,7 +52,7 @@
 }
 
 .logo {
-  height: 80px;
+  height: 30px;
   width: auto;
   margin: auto;
   cursor: pointer;
@@ -61,9 +60,15 @@
 
 .profile {
   display: flex;
-  flex-direction: column;
+  width: var(--top-navbar-height);
+  height: var(--top-navbar-height);
+}
+.profileRight {
+  margin: auto auto auto auto;
+  display: flex;
   align-items: center;
-  margin: auto 5px auto auto;
+  cursor: pointer;
+  color: #f1f1f1;
 }
 
 .profilePicture {
@@ -107,6 +112,9 @@
 }
 
 .bottomNavbarWrap {
+  position: absolute;
+  bottom: 0px;
+  width: 100%;
   background-color: #000000;
   z-index: 1;
 }
@@ -154,10 +162,6 @@
 
 /* Media queries for small mobile devices */
 @media (max-width: 359px) {
-  .content {
-    margin: 5px;
-  }
-
   .upperNavbar {
     max-width: 800px;
     margin: auto;
@@ -171,9 +175,6 @@
 
 /* Media queries for medium-sized mobile devices */
 @media (min-width: 360px) and (max-width: 479px) {
-  .content {
-    margin: 10px;
-  }
   .upperNavbar {
     max-width: 800px;
     margin: auto;
@@ -186,9 +187,6 @@
 
 /* Media queries for large mobile devices */
 @media (min-width: 480px) and (max-width: 767px) {
-  .content {
-    margin: 10px 20px;
-  }
   .upperNavbar {
     max-width: 800px;
     margin: auto;
@@ -201,9 +199,6 @@
 
 /* Media queries for tablets */
 @media (min-width: 768px) and (max-width: 1023px) {
-  .content {
-    margin: 10px 20px;
-  }
   .upperNavbar {
     max-width: 800px;
     margin: auto;
@@ -216,9 +211,6 @@
 
 /* Media queries for small desktop screens */
 @media (min-width: 1024px) and (max-width: 1199px) {
-  .content {
-    margin: 10px 40px;
-  }
   .upperNavbar {
     max-width: 800px;
     margin: auto;
@@ -231,9 +223,6 @@
 
 /* Media queries for medium to large desktop screens */
 @media (min-width: 1200px) and (max-width: 1439px) {
-  .content {
-    margin: 10px 60px;
-  }
   .upperNavbar {
     max-width: 800px;
     margin: auto;
@@ -246,9 +235,6 @@
 
 /* Media queries for larger desktop screens */
 @media (min-width: 1440px) {
-  .content {
-    margin: 10px auto;
-  }
   .upperNavbar {
     max-width: 800px;
     margin: auto;

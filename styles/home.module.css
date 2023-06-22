@@ -22,11 +22,7 @@
   color: #ffffff;
 }
 .container {
-  padding: 20px;
   border-radius: 5px;
-  width: 95%;
-  margin: 0 auto;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
   position: relative;
   overflow: hidden;
   display: flex;
@@ -41,7 +37,6 @@
 }
 
 .photos {
-  max-width: 90%;
   display: flex;
   flex-wrap: nowrap;
   flex-direction: row;
@@ -141,13 +136,10 @@
 /* Reset default list styles */
 .messagePreviewList {
   padding: 0;
-  max-width: 80%;
-  width: 90%;
   display: flex;
   align-items: center;
   flex-direction: column;
   list-style-type: none;
-  margin: auto;
   flex-grow: 1;
 }
 
@@ -170,7 +162,7 @@
 .messagePreview img {
   width: 60px;
   height: 60px;
-  margin-right: 10px;
+  margin: 0 10px;
   border-radius: 50%;
 }
 

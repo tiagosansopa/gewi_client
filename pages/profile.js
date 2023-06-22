@@ -81,9 +81,6 @@ const profile = () => {
           <h2>{user.name}</h2>
           <h3>{user.email}</h3>
         </div>
-      </div>
-
-      <div className={profileStyles.containers}>
         <div>
           <h3>Theme: </h3>
           <div>
@@ -97,7 +94,10 @@ const profile = () => {
             </div>
           </div>
         </div>
-        <button className={profileStyles.change} onClick={handleChangePassword}>
+      </div>
+
+      <div className={profileStyles.containers}>
+        <button className={profileStyles.change} onClick={handleGiveAccess}>
           Change Password
         </button>
         <GoogleLogin

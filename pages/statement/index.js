@@ -20,9 +20,6 @@ const Statement = () => {
     <div className={payStyles.container}>
       <div className={payStyles.container}>
         <h1>Estado de cuenta</h1>
-      </div>
-
-      <div className={payStyles.container}>
         <select value={selectedMonth} onChange={handleMonthChange}>
           <option value="">Select Month</option>
           {months.map((month, index) => (

@@ -264,129 +264,114 @@ const Book = () => {
   };
 
   return (
-    <>
-      <div className={amenityStyles.messageHeader}>
-        <div className={amenityStyles.leftArrow}>
-          <FontAwesomeIcon
-            icon={faArrowLeft}
-            onClick={() => {
-              setAmenity({});
-              router.back();
-            }}
-          />
-        </div>
-      </div>
-      <div className={amenityStyles.container}>
-        {amenity.id !== undefined ? (
-          <>
-            <div className={amenityStyles.headerSection}>
-              <div>
-                <p>{amenity.name}</p>
-                <img className={amenityStyles.amenityImg} src={amenity.img} />
-              </div>
-              <div>
-                <p>Capacidad max: {amenity.capacity} personas</p>
-                <p>
-                  Open from: {amenity.schedule.open} to:
-                  {amenity.schedule.close}
-                </p>
-                <p>
-                  On:
-                  {amenity.weekdays.map((day) => {
-                    return <span> {day}, </span>;
-                  })}
-                </p>
-              </div>
-              <div>
-                <h5>Servicios Disponibles</h5>
-                <ul>
-                  {amenity.services.map((service) => {
-                    return (
-                      <li key={service}>
-                        <p>{service}</p>
-                      </li>
-                    );
-                  })}
-                </ul>
-              </div>
-              <div>
-                <p>{amenity.description}</p>
+    <div className={amenityStyles.container}>
+      {amenity.id !== undefined ? (
+        <>
+          <div className={amenityStyles.headerSection}>
+            <div>
+              <p>{amenity.name}</p>
+              <img className={amenityStyles.amenityImg} src={amenity.img} />
+            </div>
+            <div>
+              <p>Capacidad max: {amenity.capacity} personas</p>
+              <p>
+                Open from: {amenity.schedule.open} to:
+                {amenity.schedule.close}
+              </p>
+              <p>
+                On:
+                {amenity.weekdays.map((day) => {
+                  return <span> {day}, </span>;
+                })}
+              </p>
+            </div>
+            {/*<div>
+              <h5>Servicios Disponibles</h5>
+              <ul>
+                {amenity.services.map((service) => {
+                  return (
+                    <li key={service}>
+                      <p>{service}</p>
+                    </li>
+                  );
+                })}
+              </ul>
+            </div>
+            <div>
+              <p>{amenity.description}</p>
+            </div>*/}
+          </div>
+          <div className={amenityStyles.booking}>
+            <div className={amenityStyles.flexColumn}>
+              <div className={amenityStyles.calendarWrapper}>
+                <DatePicker
+                  highlightDates={highlightWithRanges}
+                  selected={selectedDate}
+                  onChange={(e) => {
+                    OnChangeDate(e);
+                  }}
+                  // startDate={selectedDate}
+                  // endDate={endDate}
+                  // selectsRange
+                  minDate={new Date()}
+                  onMonthChange={(e) => {
+                    getMonthBookings(e);
+                    excludeDays(e);
+                  }}
+                  excludeDates={excluded}
+                  fixedHeight
+                  inline
+                />
               </div>
             </div>
-            <div className={amenityStyles.booking}>
-              <div className={amenityStyles.flexColumn}>
-                <div className={amenityStyles.calendarWrapper}>
-                  <DatePicker
-                    highlightDates={highlightWithRanges}
-                    selected={selectedDate}
-                    onChange={(e) => {
-                      OnChangeDate(e);
-                    }}
-                    // startDate={selectedDate}
-                    // endDate={endDate}
-                    // selectsRange
-                    minDate={new Date()}
-                    onMonthChange={(e) => {
-                      getMonthBookings(e);
-                      excludeDays(e);
-                    }}
-                    excludeDates={excluded}
-                    fixedHeight
-                    inline
-                  />
-                </div>
-              </div>
-              <div className={amenityStyles.flexColumn}>
-                <label htmlFor="hora">Inicio</label>
-                <select
-                  onChange={(e) => {
-                    setUpInitDate(e.target.value);
-                    getPossibleFinishHours(e.target.value);
-                  }}
-                  value={startHour}
-                >
-                  {startHour === "" && (
-                    <option value="">Select a start hour</option>
-                  )}
-                  {hours.map((hour) => (
-                    <option key={hour} value={hour}>
-                      {hour}
-                    </option>
-                  ))}
-                </select>
-                <label htmlFor="horaFin">Fin</label>
-                <select
-                  onChange={(e) => {
-                    setUpEndDate(e.target.value);
-                  }}
-                  value={endHour}
-                >
-                  {endHour === "" && (
-                    <option value="">Select a end hour</option>
-                  )}
-                  {endHours.map((hour) => (
-                    <option key={hour} value={hour}>
-                      {hour}
-                    </option>
-                  ))}
-                </select>
+            <div className={amenityStyles.flexColumn}>
+              <label htmlFor="hora">Inicio</label>
+              <select
+                onChange={(e) => {
+                  setUpInitDate(e.target.value);
+                  getPossibleFinishHours(e.target.value);
+                }}
+                value={startHour}
+              >
+                {startHour === "" && (
+                  <option value="">Select a start hour</option>
+                )}
+                {hours.map((hour) => (
+                  <option key={hour} value={hour}>
+                    {hour}
+                  </option>
+                ))}
+              </select>
+              <label htmlFor="horaFin">Fin</label>
+              <select
+                onChange={(e) => {
+                  setUpEndDate(e.target.value);
+                }}
+                value={endHour}
+              >
+                {endHour === "" && <option value="">Select a end hour</option>}
+                {endHours.map((hour) => (
+                  <option key={hour} value={hour}>
+                    {hour}
+                  </option>
+                ))}
+              </select>
 
-                <label htmlFor="nombre">Nombre de evento</label>
-                <input
-                  id="nombre"
-                  name="nombre"
-                  onChange={handleEventName}
-                  value={eventName}
-                ></input>
-                <button onClick={bookAmenity}>Agendar</button>
-              </div>
+              <label htmlFor="nombre">Nombre de evento</label>
+              <input
+                id="nombre"
+                name="nombre"
+                onChange={handleEventName}
+                value={eventName}
+              ></input>
+              <button onClick={bookAmenity}>Agendar</button>
             </div>
-          </>
-        ) : (
-          <></>
-        )}
-      </div>
-    </>
+          </div>
+        </>
+      ) : (
+        <></>
+      )}
+    </div>
   );
 };
 export const getServerSideProps = withAuth();

@@ -57,9 +57,6 @@ const Chat = () => {
   return (
     <div className={chatStyles.container}>
       <div className={chatStyles.messageHeader}>
-        <div className={chatStyles.leftArrow}>
-          <FontAwesomeIcon icon={faArrowLeft} onClick={() => router.back()} />
-        </div>
         <div className={chatStyles.header}>
           <img src={chat.img} alt="Message Icon" />
           <h2>{chat.name}</h2>

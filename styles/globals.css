@@ -14,8 +14,8 @@
 
 /* variables */
 :root {
-  --top-navbar-height: 90px;
-  --bottom-navbar-height: 70px;
+  --top-navbar-height: 45px;
+  --bottom-navbar-height: 45px;
   --top-bottom-margin-container: 20px;
   --left-right-margin-container: 20px;
   --dark-theme-color: #18191b;

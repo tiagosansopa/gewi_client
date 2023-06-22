@@ -3,6 +3,8 @@ import { withAuth } from "../../components/withAuth";
 import AuthContext from "../../context/AuthContext";
 import { chatStyles } from "../../styles";
 import { useRouter } from "next/router";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faPlus } from "@fortawesome/free-solid-svg-icons";
 import axios from "axios";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -116,26 +118,9 @@ const Messages = ({ user }) => {
           );
         })}
       </ul>
-
-      {showContactList && (
-        <ul className={chatStyles.contactList}>
-          {contacts.map((contact) => (
-            <li
-              key={contact._id}
-              className={chatStyles.contact}
-              //onClick={() => handleContactClick(contact)}
-            >
-              {contact.name}
-            </li>
-          ))}
-        </ul>
-      )}
-
-      <div className={chatStyles.buttonsContainer}>
-        <button className={chatStyles.button} onClick={handleNewMessage}>
-          <FontAwesomeIcon icon={faPlus} />
-        </button>
-      </div>
+      <button className={chatStyles.button} onClick={handleNewMessage}>
+        <FontAwesomeIcon icon={faPlus} />
+      </button>
     </div>
   );
 };

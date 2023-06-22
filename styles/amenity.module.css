@@ -13,12 +13,7 @@
 } */
 
 .container {
-  /* background-color: #ffffff26; */
-  padding: 20px;
-  border-radius: 5px;
-  width: 95%;
-  margin: 0;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+  background-color: #ffffff26;
   position: relative;
   overflow: hidden;
   display: flex;
@@ -40,15 +35,12 @@
 }
 
 .amenityContainer {
-  background-color: #ffffff26;
   padding: 20px;
   border-radius: 5px;
   width: 90%;
   margin: 0 auto;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
   display: flex;
   flex-flow: wrap;
-  justify-content: space-between;
   overflow: scroll;
 }
 
@@ -68,6 +60,7 @@
 }
 
 .photoscontainerWrap {
+  margin: auto;
   transition: all 0.3s ease-out;
   border: 5px solid #ffffff00;
 }
@@ -99,10 +92,6 @@
   display: flex;
   align-content: center;
 }
-.headerSection > div {
-  width: 25%;
-  margin: 0 auto 0 auto;
-}
 
 .amenityImg {
   display: block;
@@ -111,7 +100,10 @@
   height: auto;
   border-radius: 5px;
 }
-
+.name {
+  position: relative;
+  margin: 0 0 0 5px;
+}
 .amenities {
   width: 100%;
   margin: 20px 0px;
@@ -236,8 +228,7 @@
 }
 
 .header {
-  width: 100%;
-  text-align: center;
+  margin: 0 5px;
 }
 
 .messageHeader img {
@@ -358,17 +349,16 @@
 .flexColumn {
   display: flex;
   flex-direction: column;
-  padding: 15px;
 }
 
 .flexColumn > * {
   margin: auto auto auto 0;
 }
 .calendarWrapper {
-  margin: auto 0 auto 0;
+  margin: auto;
 }
 .booking {
-  margin: 10px 5px;
+  flex-direction: column;
   background-color: rgba(42, 145, 255, 0.5);
 
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);

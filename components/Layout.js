@@ -12,6 +12,7 @@ import {
   faWallet,
   faHome,
   faCouch,
+  faArrowLeft,
 } from "@fortawesome/free-solid-svg-icons";
 import Link from "next/link";
 
@@ -44,8 +45,31 @@ const Layout = ({ children }) => {
         <div className={layoutStyles.upperNavbar}>
           {user && (
             <div className={layoutStyles.bellWrap}>
+              <div className={layoutStyles.bell}>
+                <FontAwesomeIcon
+                  icon={faArrowLeft}
+                  onClick={() => {
+                    router.back();
+                    setAmenity({});
+                  }}
+                />
+              </div>
+            </div>
+          )}
+
+          <img
+            className={layoutStyles.logo}
+            src={"/images/logos/gewi-lp.png"}
+            onClick={() => {
+              setAmenity({});
+              handleIconClick("/");
+            }}
+          />
+
+          {user && (
+            <div className={layoutStyles.profile}>
               <div
-                className={layoutStyles.bell}
+                className={layoutStyles.profileRight}
                 onClick={() => router.push("/notifications")}
               >
                 <FontAwesomeIcon
@@ -55,15 +79,6 @@ const Layout = ({ children }) => {
               </div>
             </div>
           )}
-
-          <img
-            className={layoutStyles.logo}
-            src={"/images/logos/gewi_txt.png"}
-            onClick={() => {
-              setAmenity({});
-              handleIconClick("/");
-            }}
-          />
         </div>
       </header>
       <main className={layoutStyles.content}>{children}</main>
@@ -82,7 +97,10 @@ const Layout = ({ children }) => {
               </div>
               <div
                 className={layoutStyles.iconContainer}
-                onClick={() => handleIconClick("/statement")}
+                onClick={() => {
+                  setAmenity({});
+                  handleIconClick("/statement");
+                }}
               >
                 <FontAwesomeIcon
                   icon={faWallet}
@@ -91,7 +109,10 @@ const Layout = ({ children }) => {
               </div>
               <div
                 className={layoutStyles.iconContainer}
-                onClick={() => handleIconClick("/")}
+                onClick={() => {
+                  setAmenity({});
+                  handleIconClick("/");
+                }}
               >
                 <FontAwesomeIcon
                   icon={faHome}
@@ -112,7 +133,10 @@ const Layout = ({ children }) => {
               </div>
               <div
                 className={layoutStyles.iconContainer}
-                onClick={() => handleIconClick("/profile")}
+                onClick={() => {
+                  setAmenity({});
+                  handleIconClick("/profile");
+                }}
               >
                 <img
                   className={layoutStyles.profilePicture}

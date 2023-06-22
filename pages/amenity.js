@@ -51,15 +51,7 @@ const Amenity = () => {
 
   return (
     <div className={amenityStyles.container}>
-      <div className={amenityStyles.messageHeader}>
-        <div className={amenityStyles.leftArrow}>
-          <FontAwesomeIcon icon={faArrowLeft} onClick={() => router.back()} />
-        </div>
-        <div className={amenityStyles.header}>
-          <h1>Amenidades</h1>
-        </div>
-      </div>
-
+      <h1 className={amenityStyles.header}>Amenidades</h1>
       <div className={amenityStyles.amenityContainer}>
         {amenityList.map((item) => {
           return (
@@ -70,7 +62,7 @@ const Amenity = () => {
               }}
             >
               <div key={item.id} className={amenityStyles.photoscontainer}>
-                <h3>{item.name}</h3>
+                <h3 className={amenityStyles.name}>{item.name}</h3>
                 <img src={item.img} className={amenityStyles.imgShadow} />
                 <p>
                   {item.weekdays.map((day) => {
