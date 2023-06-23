@@ -4,14 +4,12 @@ import AuthContext from "../context/AuthContext";
 import { homeStyles } from "../styles";
 import { useRouter } from "next/router";
 import axios from "axios";
-
-import { DUMMY_AMENITIES } from "../dummy";
-
 const Home = ({ user }) => {
   const router = useRouter();
   const { amenity, setChat, setAmenity, handleContextChange } =
     useContext(AuthContext);
   const [messages, setMessages] = useState([]);
+  const [amenities, setAmenities] = useState([]);
 
   const getChats = async (user) => {
     try {
@@ -27,8 +25,19 @@ const Home = ({ user }) => {
     }
   };
 
+  const getAmenities = async (user) => {
+    try {
+      const response = await axios.get(
+        `${process.env.NEXT_PUBLIC_API_NAME}/user/amenities/${user._id}`
+      );
+      setAmenities(response.data.amenities);
+    } catch (error) {
+      console.log(error);
+    }
+  };
   useEffect(() => {
     getChats(user);
+    getAmenities(user);
   }, []);
 
   const handleSelectMessage = (message) => {
@@ -59,7 +68,7 @@ const Home = ({ user }) => {
     <div className={homeStyles.container}>
       <div className={homeStyles.amenities}>
         <div className={homeStyles.photos}>
-          {DUMMY_AMENITIES.map((item) => {
+          {amenities.map((item) => {
             return (
               <div
                 className={homeStyles.photoscontainerWrap}
