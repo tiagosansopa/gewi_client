@@ -21,6 +21,24 @@
   flex-direction: column;
 }
 
+.header {
+  display: flex;
+  flex-direction: column;
+  align-items: ce;
+}
+
+.header h1 {
+  text-align: left;
+}
+
+.header img {
+  margin: 0 80px;
+}
+
+.header div {
+  text-align: center;
+}
+
 .table {
   width: 100%;
   border-collapse: collapse;
@@ -41,7 +59,11 @@
 }
 
 .payButton {
+  background-color: green;
+  color: white;
+  border: solid 5px greenyellow;
   margin-top: 10px;
+  float: right;
 }
 
 .toggle {
