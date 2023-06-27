@@ -1,21 +1,21 @@
 .container {
-  background-color: #ffffff26;
-  padding: 20px;
-  border-radius: 5px;
-  margin: 0 auto;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
-  position: relative;
-  overflow: hidden;
+  z-index: 1;
   display: flex;
   flex-direction: column;
+  flex-grow: 1;
+  margin: 0;
 }
 .imgLogo {
-  width: 70%;
+  width: 50%;
   height: auto;
-  margin: auto;
+  margin: 80px auto 20px auto;
 }
 .error {
   color: #ff0033;
+  margin-bottom: 10px;
+}
+.success {
+  color: #00ff04;
   margin-bottom: 10px;
 }
 
@@ -24,6 +24,7 @@
   margin-bottom: 5px;
   color: #ffffff;
   text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
+  display: none;
 }
 
 .input {
@@ -32,14 +33,14 @@
   margin: 0 auto 10px auto;
   border-radius: 5px;
   border: none;
-  background-color: #ffffff9a;
+  background-color: #ffffff;
   color: #000000;
   box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.5);
 }
 .form {
   display: flex;
   flex-direction: column;
-  margin: auto;
+  margin: 0 auto;
   justify-items: center;
 }
 .buttonContainer {
@@ -54,11 +55,13 @@
 }
 
 .button {
-  background-color: #000000;
+  background-color: #b5a7a7cb;
   color: #ffffff;
+  font-weight: bolder;
+  font-size: medium;
   width: 175.969px;
   height: 43px;
-  margin: auto;
+  margin: 20px auto;
   padding: 10px;
   border-radius: 5px;
   border: none;

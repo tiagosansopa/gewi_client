@@ -25,7 +25,7 @@ const Layout = ({ children }) => {
 
   useEffect(() => {
     setUser(user);
-    console.log("layout rendered");
+    console.log("layout rendered", isDarkMode);
   }, []);
 
   const handleIconClick = (route) => {
@@ -35,13 +35,9 @@ const Layout = ({ children }) => {
   return (
     <div
       className={`${layoutStyles.container}  ${
-        isDarkMode ? layoutStyles.darkdark : ""
+        isDarkMode ? layoutStyles.dark : layoutStyles.light
       }`}
     >
-      <img
-        className={`${layoutStyles.bg} ${isDarkMode ? layoutStyles.dark : ""}`}
-        alt=""
-      ></img>
       <header className={layoutStyles.upperNavbarWrap}>
         <div className={layoutStyles.upperNavbar}>
           {user && (
