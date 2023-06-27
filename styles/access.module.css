@@ -128,8 +128,7 @@
 .listItem {
   display: flex;
   align-items: center;
-  border-bottom: 1px solid #ccc;
-  background-color: #ffffff;
+  padding: 10px 50px 10px 40px;
   color: #000000;
 }
 .listItem > * {
@@ -137,11 +136,15 @@
 }
 
 .thumbnail {
-  width: 50px;
-  height: 50px;
+  width: 60px;
+  height: 60px;
   object-fit: cover;
   border-radius: 50px;
-  margin-right: 10px;
+  margin-right: 30px;
+}
+
+.details {
+  margin: 0 0 0 0;
 }
 
 .place {

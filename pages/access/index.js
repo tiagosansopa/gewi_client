@@ -45,7 +45,7 @@ const Access = () => {
 
   return (
     <div className={accessStyles.container}>
-      <h2 className={accessStyles.title}>Otorgados</h2>
+      <h2 className={accessStyles.title}>Accesos</h2>
       <div className={accessStyles.amenities}>
         <div className={accessStyles.photos}>
           {vigentes.map((item) => {
@@ -82,7 +82,7 @@ const Access = () => {
           })}
         </div>
       </div>
-      <h2 className={accessStyles.title}>Solicitados</h2>
+      <h2 className={accessStyles.title}>Solicitudes de acceso</h2>
       <div className={accessStyles.listContainer}>
         <ul className={accessStyles.list}>
           {solicitadosData.map((item, index) => (

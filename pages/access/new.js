@@ -126,7 +126,7 @@ const NewAccess = ({ user }) => {
         </div>
       ) : (
         <>
-          <h1>New Access</h1>
+          <h1>Dar accesso</h1>
           {!contact ? (
             <>
               <div className={accessStyles.sliderButton}>
