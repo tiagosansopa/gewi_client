@@ -68,7 +68,7 @@ const Chat = () => {
           return (
             <>
               {message.receiver === user._id ? (
-                <>
+                <div>
                   <div
                     key={message.message}
                     className={`${chatStyles.message}  `}
@@ -78,9 +78,9 @@ const Chat = () => {
                   <p className={chatStyles.time}>
                     {new Date(message.createdAt).toLocaleTimeString()}
                   </p>
-                </>
+                </div>
               ) : (
-                <>
+                <div>
                   <div
                     key={message.message}
                     className={`${chatStyles.message} ${chatStyles.textOnly}`}
@@ -98,7 +98,7 @@ const Chat = () => {
                   >
                     {new Date(message.createdAt).toLocaleTimeString()}
                   </p>
-                </>
+                </div>
               )}
             </>
           );
