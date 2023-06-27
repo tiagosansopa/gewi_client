@@ -5,22 +5,19 @@
   flex-direction: column;
   max-height: 100vh;
   max-width: 100vw;
-  background-color: var(--dark-theme-color);
-}
-.bg {
   transition: all 0.5s linear;
-  content: var(--light-theme-background);
-  opacity: 0.6;
-  position: absolute;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
 }
 
 .dark {
-  opacity: 0;
   background-color: var(--dark-theme-color);
+}
+
+.light {
+  background-image: var(--light-theme-background);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-color: var(--light-theme-color);
 }
 
 /* ... upper nav ... */

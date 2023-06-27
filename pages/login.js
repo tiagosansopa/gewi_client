@@ -78,14 +78,12 @@ const Login = () => {
     <div className={loginStyles.container}>
       <img
         className={loginStyles.imgLogo}
-        src="/images/logos/logo512.png"
+        src="/images/logos/gewi_white.png"
         alt="Gewi Logo"
       />
       <form className={loginStyles.form} onSubmit={handleSubmit}>
         {error && <div className={loginStyles.error}>{error}</div>}
-        <h2>{success && success}</h2>
-        <h2>{error && error}</h2>
-
+        {success && <div className={loginStyles.success}>{success}</div>}
         <label className={loginStyles.label} htmlFor="email">
           Email:
         </label>
@@ -93,6 +91,7 @@ const Login = () => {
           className={loginStyles.input}
           type="email"
           id="email"
+          placeholder="Email"
           value={email}
           onChange={handleChange("email")}
         />
@@ -103,6 +102,7 @@ const Login = () => {
           className={loginStyles.input}
           type="password"
           id="password"
+          placeholder="Password"
           value={password}
           onChange={handleChange("password")}
         />
