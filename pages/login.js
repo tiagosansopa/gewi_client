@@ -7,7 +7,8 @@ import AuthContext from "../context/AuthContext";
 import { authenticate, isAuth } from "../helpers/auth";
 import { notAuth } from "../components/notAuth";
 const Login = () => {
-  const { setUser } = useContext(AuthContext);
+  const { setUser, setIsDarkMode, handleContextChange } =
+    useContext(AuthContext);
   const router = useRouter();
   const [state, setState] = useState({
     email: "",
@@ -47,6 +48,8 @@ const Login = () => {
 
       authenticate(response, () => {
         setUser(response.data.user);
+        setIsDarkMode(response.data.user.theme === 0 ? true : false);
+        handleContextChange();
         isAuth() && isAuth().role === "admin"
           ? router.push("/admin")
           : router.push("/");
