@@ -13,7 +13,6 @@
 } */
 
 .container {
-  background-color: #ffffff26;
   position: relative;
   overflow: hidden;
   display: flex;
@@ -35,12 +34,9 @@
 }
 
 .amenityContainer {
-  padding: 20px;
-  border-radius: 5px;
-  width: 90%;
-  margin: 0 auto;
   display: flex;
   flex-flow: wrap;
+  flex-grow: 1;
   overflow: scroll;
 }
 
@@ -60,7 +56,7 @@
 }
 
 .photoscontainerWrap {
-  margin: auto;
+  margin: 15px;
   transition: all 0.3s ease-out;
   border: 5px solid #ffffff00;
 }
@@ -71,15 +67,15 @@
 }
 
 .photoscontainer {
+  position: relative;
   padding: 5px 10px;
-  width: 200px;
   display: flex;
   flex-direction: column;
 }
 
 .photoscontainer > img {
-  width: auto;
-  height: 100px;
+  max-width: 100%;
+  height: auto;
   cursor: pointer;
 }
 
@@ -88,9 +84,29 @@
   margin: 5px auto 0 0;
 }
 
+.amenityFoot {
+  display: flex;
+  justify-content: space-between;
+}
+
+.amenityFoot > * {
+  margin: 0 5px;
+}
+
 .headerSection {
   display: flex;
   align-content: center;
+}
+
+.star {
+  padding: 20px;
+  position: absolute;
+  right: 15px;
+  top: 10px;
+  font-size: 25px;
+  color: white;
+  cursor: pointer;
+  z-index: 1;
 }
 
 .amenityImg {
