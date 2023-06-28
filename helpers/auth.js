@@ -95,4 +95,5 @@ export const getDataFromToken = (token) => {
 export const logout = () => {
   removeCookie("token");
   removeLocalStorage("user");
+  removeLocalStorage("ctxt");
 };

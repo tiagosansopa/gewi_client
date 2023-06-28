@@ -1,5 +1,6 @@
 import { useState, useEffect, useContext } from "react";
 import AuthContext from "../context/AuthContext";
+import axios from "axios";
 import { profileStyles, layoutStyles } from "../styles";
 import { useRouter } from "next/router";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -7,14 +8,18 @@ import { faCamera, faAppleWhole } from "@fortawesome/free-solid-svg-icons";
 import { withAuth } from "../components/withAuth";
 import { withAdmin } from "../components/withAdmin";
 
-const profile = () => {
+const profile = ({ user }) => {
   const router = useRouter();
-  const { user, handleLogOut, isDarkMode, handleToggle } =
+  const { handleLogOut, isDarkMode, handleContextChange, setIsDarkMode } =
     useContext(AuthContext);
 
   const logout = () => {
     handleLogOut();
   };
+
+  useEffect(() => {
+    getTheme();
+  }, []);
 
   const handleChangeProfilePicture = () => {
     console.log("hola");
@@ -28,6 +33,38 @@ const profile = () => {
     console.log("implement");
   };
 
+  const setTheme = async () => {
+    try {
+      const response = await axios.put(
+        `${process.env.NEXT_PUBLIC_API_NAME}/user/theme/${user._id}`,
+        {
+          theme: isDarkMode ? 1 : 0,
+        }
+      );
+      setIsDarkMode(response.data.theme === 0 ? true : false);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const getTheme = async () => {
+    try {
+      const response = await axios.get(
+        `${process.env.NEXT_PUBLIC_API_NAME}/user/theme/${user._id}`
+      );
+      console.log("tema actual, ", response.data.theme);
+      setIsDarkMode(response.data.theme === 0 ? true : false);
+      handleContextChange();
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const handleTheme = () => {
+    setTheme();
+    handleContextChange();
+  };
+
   return (
     <div className={profileStyles.container}>
       <div className={profileStyles.header}>
@@ -37,6 +74,14 @@ const profile = () => {
             src={user.img}
             alt="Profile Picture"
           />
+          <div
+            className={`${layoutStyles.themeSwitch} ${
+              isDarkMode ? layoutStyles.darkMode : ""
+            }`}
+            onClick={handleTheme}
+          >
+            <div className={layoutStyles.slider} />
+          </div>
           <button
             className={profileStyles.changePictureButton}
             onClick={handleChangeProfilePicture}
@@ -47,19 +92,6 @@ const profile = () => {
         <div>
           <h2>{user.name}</h2>
           <h3>{user.email}</h3>
-        </div>
-        <div>
-          <h3>Theme: </h3>
-          <div>
-            <div
-              className={`${layoutStyles.themeSwitch} ${
-                isDarkMode ? layoutStyles.darkMode : ""
-              }`}
-              onClick={handleToggle}
-            >
-              <div className={layoutStyles.slider} />
-            </div>
-          </div>
         </div>
       </div>
 

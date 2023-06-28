@@ -26,22 +26,24 @@ export const AuthProvider = ({ children }) => {
       chat: prevChat,
       qrDetail: qr,
       user: preUser,
+      theme,
     } = workAround;
     setAmenity(prevAme);
     setChat(prevChat);
     setQrDetail(qr);
     setUser(setUser);
+    setIsDarkMode(theme === 0 ? true : false);
     console.log("lei el local", workAround);
     return workAround;
   };
 
   const handleContextChange = () => {
-    console.log("voy a guardar la amenidad ", amenity);
     const context = {
       amenity,
       chat,
       qrDetail,
       user,
+      theme: isDarkMode ? 0 : 1,
     };
     setLocalStorage("ctxt", context);
   };
@@ -54,10 +56,6 @@ export const AuthProvider = ({ children }) => {
     setQrDetail();
     setUser({});
     logout();
-  };
-
-  const handleToggle = () => {
-    setIsDarkMode(!isDarkMode);
   };
 
   return (
@@ -76,8 +74,8 @@ export const AuthProvider = ({ children }) => {
         handleLogOut,
         handleContextChange,
         readLocalStorage,
-        handleToggle,
         isDarkMode,
+        setIsDarkMode,
       }}
     >
       {children}

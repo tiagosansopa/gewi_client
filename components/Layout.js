@@ -18,13 +18,14 @@ import {
 import Link from "next/link";
 
 const Layout = ({ children }) => {
-  const { setUser, isDarkMode, handleToggle, setAmenity } =
+  const { setUser, isDarkMode, setAmenity, readLocalStorage } =
     useContext(AuthContext);
   const user = children.props.user;
   const router = useRouter();
 
   useEffect(() => {
     setUser(user);
+    readLocalStorage();
     console.log("layout rendered", isDarkMode);
   }, []);
 
@@ -38,7 +39,11 @@ const Layout = ({ children }) => {
         isDarkMode ? layoutStyles.dark : layoutStyles.light
       }`}
     >
-      <header className={layoutStyles.upperNavbarWrap}>
+      <header
+        className={`${layoutStyles.upperNavbarWrap}  ${
+          isDarkMode ? layoutStyles.dark : layoutStyles.light
+        }`}
+      >
         <div className={layoutStyles.upperNavbar}>
           {user && (
             <div className={layoutStyles.bellWrap}>
@@ -56,7 +61,7 @@ const Layout = ({ children }) => {
 
           <img
             className={layoutStyles.logo}
-            src={"/images/logos/gewi-lp.png"}
+            src={`/images/logos/${isDarkMode ? "gewi-lp.png" : "gewi-np.png"}`}
             onClick={() => {
               setAmenity({});
               handleIconClick("/");
@@ -82,7 +87,11 @@ const Layout = ({ children }) => {
         </div>
       </header>
       <main className={layoutStyles.content}>{children}</main>
-      <footer className={layoutStyles.bottomNavbarWrap}>
+      <footer
+        className={`${layoutStyles.bottomNavbarWrap}  ${
+          isDarkMode ? layoutStyles.dark : layoutStyles.light
+        }`}
+      >
         <div className={layoutStyles.bottomNavbar}>
           {user && (
             <>
