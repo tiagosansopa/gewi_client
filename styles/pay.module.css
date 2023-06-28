@@ -21,6 +21,24 @@
   flex-direction: column;
 }
 
+.header {
+  display: flex;
+  flex-direction: column;
+  align-items: ce;
+}
+
+.header h1 {
+  text-align: left;
+}
+
+.header img {
+  margin: 0 80px;
+}
+
+.header div {
+  text-align: center;
+}
+
 .table {
   width: 100%;
   border-collapse: collapse;
@@ -41,5 +59,50 @@
 }
 
 .payButton {
+  background-color: green;
+  color: white;
+  border: solid 5px greenyellow;
   margin-top: 10px;
+  float: right;
+}
+
+.toggle {
+  float: right;
+  padding: 0;
+}
+
+.form {
+  max-width: 400px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #f0f0f0;
+}
+
+.form label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+.form input[type="text"] {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.form button[type="submit"] {
+  display: block;
+  width: 100%;
+  padding: 10px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.form button[type="submit"]:hover {
+  background-color: #0056b3;
 }

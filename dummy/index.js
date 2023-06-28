@@ -19,6 +19,51 @@ exports.paymentData = [
   },
 ];
 
+exports.statementData = {
+  debt: [
+    {
+      tipo: "Abuso de parqueo",
+      monto: 300.23,
+    },
+    {
+      tipo: "Exceso de volumen",
+      monto: 700.78,
+    },
+    {
+      tipo: "Excremento de perro",
+      monto: 500.89,
+    },
+  ],
+  due: [
+    {
+      tipo: "Alquifiestas",
+      monto: 5000,
+    },
+    {
+      tipo: "Agua",
+      monto: 300,
+    },
+    {
+      tipo: "Mantenimiento",
+      monto: 700,
+    },
+    {
+      tipo: "Luz",
+      monto: 500,
+    },
+  ],
+  done: [
+    {
+      tipo: "Parqueo",
+      monto: 500,
+    },
+    {
+      tipo: "GEWI",
+      monto: 8,
+    },
+  ],
+};
+
 exports.DUMMY_AMENITIES = [
   {
     id: 1,
