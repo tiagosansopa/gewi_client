@@ -25,8 +25,9 @@ const Layout = ({ children }) => {
 
   useEffect(() => {
     setUser(user);
-    readLocalStorage();
-    console.log("layout rendered", isDarkMode);
+    if (user) {
+      readLocalStorage();
+    }
   }, []);
 
   const handleIconClick = (route) => {
@@ -45,20 +46,6 @@ const Layout = ({ children }) => {
         }`}
       >
         <div className={layoutStyles.upperNavbar}>
-          {user && (
-            <div className={layoutStyles.bellWrap}>
-              <div className={layoutStyles.bell}>
-                <FontAwesomeIcon
-                  icon={faArrowLeft}
-                  onClick={() => {
-                    router.back();
-                    setAmenity({});
-                  }}
-                />
-              </div>
-            </div>
-          )}
-
           <img
             className={layoutStyles.logo}
             src={`/images/logos/${isDarkMode ? "gewi-lp.png" : "gewi-np.png"}`}

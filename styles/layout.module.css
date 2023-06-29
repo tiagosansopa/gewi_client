@@ -48,7 +48,7 @@
 .logo {
   height: 30px;
   width: auto;
-  margin: auto;
+  margin: auto auto auto 0;
   cursor: pointer;
   transition: all 0.6s linear;
 }

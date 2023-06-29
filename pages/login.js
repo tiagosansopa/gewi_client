@@ -112,8 +112,8 @@ const Login = () => {
         <button className={loginStyles.button} type="submit">
           {buttonText}
         </button>
+        <h6>GEWI 0.1</h6>
       </form>
-      <h6>GEWI 0.1</h6>
     </div>
   );
 };
