@@ -73,10 +73,6 @@ const Login = () => {
     }
   };
 
-  const setUserLoggedIn = (token) => {
-    localStorage.setItem("token", token);
-  };
-
   return (
     <div className={loginStyles.container}>
       <img
@@ -84,6 +80,7 @@ const Login = () => {
         src="/images/logos/gewi_white.png"
         alt="Gewi Logo"
       />
+      <h6>GEWI 0.1</h6>
       <form className={loginStyles.form} onSubmit={handleSubmit}>
         {error && <div className={loginStyles.error}>{error}</div>}
         {success && <div className={loginStyles.success}>{success}</div>}
@@ -112,7 +109,6 @@ const Login = () => {
         <button className={loginStyles.button} type="submit">
           {buttonText}
         </button>
-        <h6>GEWI 0.1</h6>
       </form>
     </div>
   );
