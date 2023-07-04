@@ -62,9 +62,7 @@ const Access = () => {
                   className={`${accessStyles.photoscontainer} ${
                     item.type === "personal" && accessStyles.personal
                   }
-                  ${item.type === "car" && accessStyles.car} ${
-                    item.type === "heli" && accessStyles.heli
-                  }`}
+                  ${item.type === "car" && accessStyles.car} `}
                 >
                   <img src={item.thumbnail} />
                   <p>{item.place}</p>
@@ -73,9 +71,6 @@ const Access = () => {
                     <FontAwesomeIcon icon={faPersonRunning} />
                   )}
                   {item.type === "car" && <FontAwesomeIcon icon={faCar} />}
-                  {item.type === "heli" && (
-                    <FontAwesomeIcon icon={faHelicopter} />
-                  )}
                 </div>
               </div>
             );
@@ -100,9 +95,6 @@ const Access = () => {
                   <FontAwesomeIcon icon={faPersonRunning} />
                 )}
                 {item.type === "car" && <FontAwesomeIcon icon={faCar} />}
-                {item.type === "heli" && (
-                  <FontAwesomeIcon icon={faHelicopter} />
-                )}
               </div>
             </li>
           ))}
